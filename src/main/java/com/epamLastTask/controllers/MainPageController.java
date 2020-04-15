@@ -1,6 +1,6 @@
 package com.epamLastTask.controllers;
 
-import com.epamLastTask.domains.User;
+import com.epamLastTask.entities.User;
 import com.epamLastTask.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

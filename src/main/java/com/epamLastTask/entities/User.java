@@ -1,7 +1,9 @@
-package com.epamLastTask.domains;
+package com.epamLastTask.entities;
 
+import com.epamLastTask.entities.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,6 +14,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    //@Access(AccessType.FIELD)
     private String username;
     private String email;
     private String password;
@@ -85,7 +88,7 @@ public class User implements UserDetails {
     public Set<Order> getOrder() {
         return order;
     }
-
+    @Transactional
     public void setOrder(Order order) {
         this.order.add(order);
     }

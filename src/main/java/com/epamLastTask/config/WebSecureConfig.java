@@ -1,6 +1,6 @@
 package com.epamLastTask.config;
 
-import com.epamLastTask.service.UserService;
+import com.epamLastTask.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class WebSecureConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -36,7 +36,7 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userService)
+                .userDetailsService(userServiceImpl)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 }

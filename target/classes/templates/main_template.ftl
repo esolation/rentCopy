@@ -27,7 +27,7 @@
 
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
-
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
                 </form>
             </li>

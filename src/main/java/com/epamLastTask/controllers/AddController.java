@@ -1,6 +1,6 @@
 package com.epamLastTask.controllers;
 
-import com.epamLastTask.domains.Order;
+import com.epamLastTask.entities.Order;
 import com.epamLastTask.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
