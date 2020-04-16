@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public interface OrderService {
-    void removeOrder(User user);
+    void removeOrder(Order order);
     void createOrder(MultipartFile[] file, Order order) throws IOException;
     void addOrderToCard(Order order, User user);
 }

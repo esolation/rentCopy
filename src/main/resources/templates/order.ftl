@@ -1,6 +1,7 @@
 <#import "main_template.ftl" as t>
 <@t.header></@t.header>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" defer></script>
+<script src="js/order_page.js" defer></script>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4 ">
@@ -16,15 +17,16 @@
             </form>
 
         </div>
-        <div class="col-md-8">
-            <div > <img id="mainPhoto" class="mx-auto d-block main_photo"  src="/img/${order.getPhotos()[0]}" alt="" width="600" ></div>
-                <div class="row">
-                    <div class="col-md-8 mx-auto slide__thumbnails" >
+        <div class="col-md-8 ml-5" style="max-width: 300px;">
+            <img src="/img/${order.getPhotos()[0]}" alt="" style="width: 600px;" >
+                    <div class="row">
 
-                            <#list order.getPhotos() as photo>
-                               <img  class="mx-auto mt-5 thumb_photo d-inline" src="/img/${photo}" height="100"  alt="">
-                            </#list>
+                        <#list order.getPhotos() as photo>
 
+                          <div class="col-md-4 dblock"><img class="mt-3 ml-1 w-100" src="/img/${photo}" alt=""></div>
+                        </#list>
+
+                    </div>
                     </div>
                 </div>
 

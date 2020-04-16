@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,17 +25,22 @@ private UserRepo userRepo;
 @Autowired
 private OrderService orderService;
     @GetMapping()
-    @Transactional(propagation= Propagation.REQUIRED, readOnly = true)
     public String getClientOrders(@AuthenticationPrincipal User user,
                                   Model model){
-
         model.addAttribute("user",userRepo.findByUsername(user.getUsername()));
         return "cp";
     }
 
-    @PostMapping("remove")
-    public String removeOrder(@AuthenticationPrincipal User user){
-       orderService.removeOrder(user);
+    @PostMapping("remove/{order}")
+    public String removeOrder(@PathVariable Order order){
+        orderService.removeOrder(order);
+        return "redirect:/cp";
+    }
+
+    @PostMapping("accept/{order}")
+    public String acceptOrder(@PathVariable Order order){
+
+
         return "redirect:/cp";
     }
 }

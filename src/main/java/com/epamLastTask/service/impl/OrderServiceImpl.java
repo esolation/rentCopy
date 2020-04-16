@@ -18,12 +18,14 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepo orderRepo;
+
     @Value("${upload.path}")
     private String uploadPath;
+
     @Override
-    public void removeOrder(User user) {
-        Order order = orderRepo.findOrderByUser(user);
-        order.deleteUser();
+    public void removeOrder(Order order) {
+
+        order.setUser(null);
         order.setActive(true);
         orderRepo.save(order);
     }

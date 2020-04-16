@@ -23,6 +23,8 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User user;
+    @OneToOne(mappedBy = "order",fetch = FetchType.EAGER)
+    private Request request;
 
     public String getCarModel() {
         return carModel;
@@ -100,8 +102,11 @@ public class Order {
         this.user = user;
     }
 
-    public void deleteUser(){
-        this.user = null;
+    public Request getRequest() {
+        return request;
     }
 
+    public void setRequest(Request request) {
+        this.request = request;
+    }
 }

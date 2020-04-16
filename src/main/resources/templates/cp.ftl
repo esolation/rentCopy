@@ -16,8 +16,11 @@
                             Расход: <p class="card-text badge badge-danger"> ${order.getConsumption()} л.</p></br>
                             Цена: <span class="card-text mx-auto badge badge-warning"> ${order.getCost()}</span></br></br>
                             <p>
+                            <form action="/cp/request/${order.getId()}" method="post">
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
                                 <button class="btn btn-primary p-1" >Оформить заказ<a href="/cp/" class=""></a></button>
-                            <form action="/cp/remove" method="post">
+                            </form>
+                            <form action="/cp/remove/${order.getId()}" method="post">
                                 <input type="hidden" name="_csrf" value="${_csrf.token}">
                                 <button class="btn btn-danger p-1">Удалить заказ</button>
                             </form>

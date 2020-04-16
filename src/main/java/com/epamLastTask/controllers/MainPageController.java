@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
+
 @Controller
 public class MainPageController {
     @Autowired
@@ -20,9 +22,9 @@ public class MainPageController {
     public String main_page(@AuthenticationPrincipal User user,
             Model model){
 
-        boolean isAdmin = userService.isAdmin(user);
+
         model.addAttribute("orders", orderRepo.findAll());
-     model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isAdmin", userService.isAdmin(user));
         return "hello";
     }
 }

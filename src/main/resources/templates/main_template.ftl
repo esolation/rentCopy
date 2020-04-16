@@ -33,9 +33,13 @@
             </li>
         </ul>
         <#if isAdmin??>
-            <a href="/cp" class="btn btn-success">Добавить автобмобиль</a>
+        <#if isAdmin == true>
+            <a href="/cp" class="btn btn-success">Админ панель</a>
+            <#else>
+                <a href="/cp" class="btn btn-success">Панель пользователя</a>
         </#if>
-        <a href="/cp" class="btn btn-primary">Личный кабинет</a>
+        </#if>
+
     </div>
 </nav>
 </#macro>
