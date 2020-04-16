@@ -2,7 +2,8 @@
 <@t.header></@t.header>
 <div class="container" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
-    <#if user.getOrder()??>
+    <#if user??>
+
         <#list user.getOrder() as order>
 
                 <div class="col-md-4">
@@ -16,13 +17,18 @@
                             Цена: <span class="card-text mx-auto badge badge-warning"> ${order.getCost()}</span></br></br>
                             <p>
                                 <button class="btn btn-primary p-1" >Оформить заказ<a href="/cp/" class=""></a></button>
-                            <button class="btn btn-danger p-1">Удалить заказ<a href="/cp/" class=""></a></button>
+                            <form action="/cp/remove" method="post">
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                <button class="btn btn-danger p-1">Удалить заказ</button>
+                            </form>
                             </p>
                         </div>
                     </div>
                 </div>
 
         </#list>
+        <#else>
+        <p>У вас нет активных заказов!</p>
     </#if>
 </div>
 </div>

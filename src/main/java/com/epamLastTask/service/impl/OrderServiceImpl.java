@@ -1,32 +1,35 @@
-package com.epamLastTask.controllers;
+package com.epamLastTask.service.impl;
 
-import com.epamLastTask.domains.Order;
+import com.epamLastTask.entities.Order;
+import com.epamLastTask.entities.User;
 import com.epamLastTask.repositories.OrderRepo;
+import com.epamLastTask.service.OrderService;
+import com.epamLastTask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-@Controller
-@PreAuthorize("hasAuthority('ADMIN')")
-public class AddController {
+@Service
+public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepo orderRepo;
     @Value("${upload.path}")
     private String uploadPath;
-    @PostMapping("/addImage")
-    public String addOrder(
-            @RequestParam("file") MultipartFile[] file,
-            Order order
-            ) throws IOException {
+    @Override
+    public void removeOrder(User user) {
+        Order order = orderRepo.findOrderByUser(user);
+        order.deleteUser();
+        order.setActive(true);
+        orderRepo.save(order);
+    }
+
+    @Override
+    public void createOrder(MultipartFile[] file, Order order) throws IOException {
         for(MultipartFile fileName:file){
             if( !fileName.getOriginalFilename().isEmpty()){
                 File uploadDir = new File(uploadPath);
@@ -37,14 +40,15 @@ public class AddController {
                 fileName.transferTo(new File(uploadPath+"/"+resultFileName));
                 order.setPhotos(resultFileName);
                 order.setActive(true);
-        }
+            }
         }
         orderRepo.save(order);
-        return "redirect:hello";
     }
-    @GetMapping("/addImage")
-    public String addImg(){
 
-        return "addImage";
+    @Override
+    public void addOrderToCard(Order order, User user) {
+        order.setActive(false);
+        order.setUser(user);
+        orderRepo.save(order);
     }
 }

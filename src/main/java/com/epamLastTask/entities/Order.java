@@ -1,4 +1,4 @@
-package com.epamLastTask.domains;
+package com.epamLastTask.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Order {
     @CollectionTable(name = "order_photo", joinColumns = @JoinColumn(name="order_id"))
     private List<String> photos = new ArrayList<>();
     private boolean isActive;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User user;
 
@@ -98,6 +98,10 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void deleteUser(){
+        this.user = null;
     }
 
 }

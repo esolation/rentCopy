@@ -1,4 +1,4 @@
-package com.epamLastTask.domains;
+package com.epamLastTask.entities.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

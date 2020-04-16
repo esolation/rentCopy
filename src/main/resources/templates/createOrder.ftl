@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-<form action="/addImage" enctype="multipart/form-data" method="post">
+<form action="/createOrder" enctype="multipart/form-data" method="post">
     <div class="form-group">
     <label for="carModel">Название автомобиля</label>
     <input type="text" class="form-control" id="carModel" name="carModel" placeholder="Лада Седан">
@@ -51,15 +51,7 @@
 </div>
 
 
-<#--<form action="/addImage" enctype="multipart/form-data" method="post">-->
-<#--    <input type="file" name="file">-->
-<#--    <input type="file" name="file">-->
-<#--    <input type="text" name="carModel">-->
-<#--    <input type="text" name="description">-->
-<#--    <input type="text" name="coast">-->
-<#--    <input type="hidden" name="_csrf" value="${_csrf.token}">-->
-<#--    <input type="submit" value="Отправить">-->
-<#--</form>-->
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
