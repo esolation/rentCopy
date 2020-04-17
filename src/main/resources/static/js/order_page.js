@@ -1,10 +1,8 @@
 $(document).ready(function() {
-    $('#lightSlider').lightSlider({
-        gallery: true,
-        item: 1,
-        loop:true,
-        slideMargin: 0,
-        thumbItem: 9
-    });
+        $('.off_img').click(function () {
+
+            // var img = $(".off_img").attr('src');
+            console.log($('#off_img').attr('src'));
+            $('.main_img').attr('src',img);
+        })
 })
-// $('thumb:first').click();

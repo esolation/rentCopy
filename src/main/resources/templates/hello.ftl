@@ -13,7 +13,7 @@
             <p class="card-text badge badge-danger">Год: ${order.getYear()}</p>
             <p class="card-text badge badge-danger">Объем: ${order.getCapacity()}</p>
             <p class="card-text badge badge-danger">Расход: ${order.getConsumption()} л.</p>
-            <a href="/order/${order.getId()}" class="btn btn-primary">Заказать</a>
+            <a href="/order/${order.getId()}" class="btn btn-primary">Подробнее</a>
             <span class="card-text ml-5 badge badge-warning">Цена: ${order.getCost()}</span>
         </div>
     </div>

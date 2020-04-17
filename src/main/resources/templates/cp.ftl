@@ -5,7 +5,7 @@
     <#if user??>
 
         <#list user.getOrder() as order>
-
+            <#if order.isActive() == true>
                 <div class="col-md-4">
                     <div class="card mb-3 mt-3" style="width: 18rem;">
                         <img class="card-img-top mw-50 mh-50" src="/img/${order.getPhotos()[0]}"  alt="${order.getCarModel()}">
@@ -28,7 +28,24 @@
                         </div>
                     </div>
                 </div>
+                <#else>
+                    <div class="col-md-4">
+                        <div class="card mb-3 mt-3" style="width: 18rem;">
+                            <img class="card-img-top mw-50 mh-50" src="/img/${order.getPhotos()[0]}"  alt="${order.getCarModel()}">
+                            <div class="card-body">
+                                <h5 class="card-title">${order.getCarModel()}</h5>
+                                Год: <p class="card-text badge badge-danger"> ${order.getYear()}</p></br>
+                                Объем: <p class="card-text badge badge-danger"> ${order.getCapacity()}</p></br>
+                                Расход: <p class="card-text badge badge-danger"> ${order.getConsumption()} л.</p></br>
+                                Цена: <span class="card-text mx-auto badge badge-warning"> ${order.getCost()}</span></br><hr>
+                                <p>
+                                        Автомобиль успешно арендовам Вами до ${order.getRequest().getDateOfCreating()}
 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </#if>
         </#list>
         <#else>
         <p>У вас нет активных заказов!</p>

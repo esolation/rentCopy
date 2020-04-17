@@ -3,15 +3,17 @@ package com.epamLastTask.entities;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Temporal(TemporalType.DATE)
     private Date dateOfCreating;
-    private boolean isPaid;
-    @OneToOne(fetch = FetchType.EAGER)
+    @Temporal(TemporalType.DATE)
+    private Date rentalDate;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
@@ -23,12 +25,8 @@ public class Request {
         this.dateOfCreating = dateOfCreating;
     }
 
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean paid) {
-        isPaid = paid;
+    public Long getId() {
+        return id;
     }
 
     public Order getOrder() {
@@ -37,5 +35,13 @@ public class Request {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Date getRentalDate() {
+        return rentalDate;
+    }
+
+    public void setRentalDate(Date rentalDate) {
+        this.rentalDate = rentalDate;
     }
 }

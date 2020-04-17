@@ -16,14 +16,15 @@ public class Order {
     private Double capacity;
     private Double consumption;
     private Integer year;
+    private boolean isActive;
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "order_photo", joinColumns = @JoinColumn(name="order_id"))
     private List<String> photos = new ArrayList<>();
-    private boolean isActive;
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
-    @OneToOne(mappedBy = "order",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "order",fetch = FetchType.LAZY)
     private Request request;
 
     public String getCarModel() {

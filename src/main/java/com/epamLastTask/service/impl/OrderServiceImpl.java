@@ -49,8 +49,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void addOrderToCard(Order order, User user) {
-        order.setActive(false);
-        order.setUser(user);
-        orderRepo.save(order);
+        if(order.isActive()){
+            order.setUser(user);
+            orderRepo.save(order);
+        }
     }
 }
