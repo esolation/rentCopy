@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
 <table class="table table-dark">
-    <thead>
+    <thead id="table">
     <tr>
 
         <th scope="col">Номер заказа</th>
@@ -12,6 +12,7 @@
         <th scope="col">Кто заказал</th>
         <th scope="col">Дата заказа</th>
         <th scope="col">Дата окончания</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -23,14 +24,20 @@
             <td>${request.getOrder().getUser().getUsername()}</td>
             <td>${request.getDateOfCreating()}</td>
             <td>${request.getDateOfCreating()}</td>
+            <td class="last"><a href="/admin/complete/${request.getId()}"><button type="button" id="complete" class="btn btn-success">Завершить аренду</button></a></td>
         </tr>
     </#list>
     </tbody>
 </table>
 
 
+
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="js/admin_page.js"></script>
 </body>
 </html>
