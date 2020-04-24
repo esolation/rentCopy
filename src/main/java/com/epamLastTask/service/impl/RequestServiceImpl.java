@@ -2,6 +2,7 @@ package com.epamLastTask.service.impl;
 
 import com.epamLastTask.entities.Order;
 import com.epamLastTask.entities.Request;
+import com.epamLastTask.entities.enums.OrderStatus;
 import com.epamLastTask.repositories.RequestRepo;
 import com.epamLastTask.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class RequestServiceImpl implements RequestService {
         Request request = new Request();
         request.setOrder(order);
         request.setDateOfCreating(new Date());
+        request.setRentalDate(new Date());
+        request.setMessage(null);
+        request.setRepairCost(null);
+        request.setOrderStatus(OrderStatus.OPEN);
         requestRepo.save(request);
     }
 
