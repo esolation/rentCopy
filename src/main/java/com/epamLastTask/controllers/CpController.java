@@ -5,6 +5,7 @@ import com.epamLastTask.entities.User;
 import com.epamLastTask.repositories.OrderRepo;
 import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.OrderService;
+import com.epamLastTask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CpController {
 
 @Autowired
-private UserRepo userRepo;
+private UserService userService;
 @Autowired
 private OrderService orderService;
     @GetMapping()
     public String getClientOrders(@AuthenticationPrincipal User user,
                                   Model model){
-        model.addAttribute("user",userRepo.findByUsername(user.getUsername()));
+        model.addAttribute("user",(userService.findUserById(user.getId())));
         return "cp";
     }
 

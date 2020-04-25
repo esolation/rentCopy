@@ -55,6 +55,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-<script src="../static/js/additional_page.js"></script>
+<script src="http://localhost:8080/static/js/complete_request.js"></script>
 </body>
 </html>

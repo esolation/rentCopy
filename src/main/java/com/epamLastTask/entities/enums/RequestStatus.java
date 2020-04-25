@@ -1,5 +1,5 @@
 package com.epamLastTask.entities.enums;
 
-public enum OrderStatus {
+public enum RequestStatus {
     COMPLETE, OPEN, AWAITING_PAYMENT
 }

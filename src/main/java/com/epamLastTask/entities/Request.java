@@ -1,7 +1,6 @@
 package com.epamLastTask.entities;
 
-import com.epamLastTask.entities.enums.OrderStatus;
-import com.epamLastTask.entities.enums.Role;
+import com.epamLastTask.entities.enums.RequestStatus;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,12 +15,13 @@ public class Request {
     @Temporal(TemporalType.DATE)
     private Date rentalDate;
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private RequestStatus requestStatus;
     private Double repairCost;
     private String message;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
+
 
     public Double getRepairCost() {
         return repairCost;
@@ -67,12 +67,12 @@ public class Request {
         this.rentalDate = rentalDate;
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
+    public RequestStatus getRequestStatus() {
+        return requestStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setRequestStatus(RequestStatus requestStatus) {
+        this.requestStatus = requestStatus;
     }
 
 

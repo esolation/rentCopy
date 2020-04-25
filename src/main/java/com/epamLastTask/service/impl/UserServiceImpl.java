@@ -45,4 +45,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public boolean isAdmin(User user) {
         return user.getRole().contains(Role.ADMIN);
     }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepo.findUserById(id);
+    }
+
+
 }

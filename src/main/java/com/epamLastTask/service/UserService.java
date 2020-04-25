@@ -6,4 +6,5 @@ public interface UserService {
 
   boolean saveUser(User user);
   boolean isAdmin(User user);
+  User findUserById(Long id);
 }

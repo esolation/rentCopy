@@ -92,4 +92,8 @@ public class User implements UserDetails {
     public void setOrder(Order order) {
         this.order.add(order);
     }
+
+    public Long getId() {
+        return id;
+    }
 }
