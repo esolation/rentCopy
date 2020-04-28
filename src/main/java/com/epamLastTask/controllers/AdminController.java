@@ -15,13 +15,29 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     @Autowired
     RequestService requestService;
-    @GetMapping
+    @GetMapping("active")
     public String adminPage(Model model){
 
         model.addAttribute("requests",requestService.findAllByRequestStatus(RequestStatus.OPEN));
 
         return "admin_panel";
     }
+    @GetMapping("complete")
+    public String adminPageComplete(Model model){
+
+        model.addAttribute("requests",requestService.findAllByRequestStatus(RequestStatus.COMPLETE));
+
+        return "admin-panel_complete";
+    }
+    @GetMapping("awaitingPayments")
+    public String adminPageAwaitingPayment(Model model){
+
+        model.addAttribute("requests",requestService.findAllByRequestStatus(RequestStatus.AWAITING_PAYMENT));
+
+        return "admin-panel_awaitingPayment";
+    }
+
+
 
     @GetMapping("complete/{requestId}")
     public String completeRequest(){
@@ -34,7 +50,7 @@ public class AdminController {
                                   @RequestParam(required = false) String message,
                                   @RequestParam(required = false) String money){
         requestService.applyRequest(requestId,message,money);
-        return "redirect:/admin";
+        return "redirect:/admin/active";
     }
 
 }

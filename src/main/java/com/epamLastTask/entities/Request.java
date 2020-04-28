@@ -3,6 +3,7 @@ package com.epamLastTask.entities;
 import com.epamLastTask.entities.enums.RequestStatus;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -11,14 +12,15 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(TemporalType.DATE)
-    private Date dateOfCreating;
+    private Calendar dateOfCreating;
     @Temporal(TemporalType.DATE)
-    private Date rentalDate;
+    private Calendar rentalDate;
     @Enumerated(EnumType.STRING)
     private RequestStatus requestStatus;
     private Double repairCost;
+    private Long userID;
     private String message;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
@@ -39,11 +41,11 @@ public class Request {
         this.message = message;
     }
 
-    public Date getDateOfCreating() {
+    public Calendar getDateOfCreating() {
         return dateOfCreating;
     }
 
-    public void setDateOfCreating(Date dateOfCreating) {
+    public void setDateOfCreating(Calendar dateOfCreating) {
         this.dateOfCreating = dateOfCreating;
     }
 
@@ -59,11 +61,11 @@ public class Request {
         this.order = order;
     }
 
-    public Date getRentalDate() {
+    public Calendar getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(Date rentalDate) {
+    public void setRentalDate(Calendar rentalDate) {
         this.rentalDate = rentalDate;
     }
 
@@ -75,5 +77,11 @@ public class Request {
         this.requestStatus = requestStatus;
     }
 
+    public Long getUserID() {
+        return userID;
+    }
 
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
 }

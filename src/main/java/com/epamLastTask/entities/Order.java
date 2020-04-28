@@ -1,5 +1,9 @@
 package com.epamLastTask.entities;
 
+import com.epamLastTask.entities.enums.RequestStatus;
+import com.epamLastTask.service.RequestService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name="ord")
 public class Order {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,8 +30,8 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
-    @OneToOne(mappedBy = "order",fetch = FetchType.LAZY)
-    private Request request;
+    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
+    private List<Request> request;
 
     public String getCarModel() {
         return carModel;
@@ -103,11 +109,11 @@ public class Order {
         this.user = user;
     }
 
-    public Request getRequest() {
+    public List<Request> getRequest() {
         return request;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(List<Request> request) {
         this.request = request;
     }
 }
