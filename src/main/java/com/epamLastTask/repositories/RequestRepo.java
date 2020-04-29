@@ -11,6 +11,8 @@ public interface RequestRepo extends JpaRepository<Request,Long> {
     List<Request> findAllByRequestStatus(RequestStatus requestStatus);
     Request findByRequestStatusAndOrder_User_Id(RequestStatus requestStatus,Long id);
     List<Request> findAllByUserID(Long id);
+    List<Request> findAllByRequestStatusAndUserID(RequestStatus requestStatus, Long id);
+
 
 
 }

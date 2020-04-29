@@ -2,6 +2,7 @@ package com.epamLastTask.controllers;
 
 import com.epamLastTask.entities.Request;
 import com.epamLastTask.entities.User;
+import com.epamLastTask.entities.enums.RequestStatus;
 import com.epamLastTask.repositories.OrderRepo;
 import com.epamLastTask.service.RequestService;
 import com.epamLastTask.service.UserService;
@@ -21,6 +22,9 @@ public class MainPageController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RequestService requestService;
+
 
     @GetMapping("/hello")
     public String main_page(@AuthenticationPrincipal User user,
@@ -29,5 +33,10 @@ public class MainPageController {
         model.addAttribute("orders", orderRepo.findAll());
         model.addAttribute("isAdmin", userService.isAdmin(user));
         return "hello";
+    }
+    @GetMapping("/history")
+    public String getHistory(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("requests", requestService.findCompleteRequestByUserId(user.getId()));
+        return "history";
     }
 }

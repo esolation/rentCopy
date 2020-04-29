@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,15 +23,16 @@ public class RequestServiceImpl implements RequestService {
 
     @Transactional
     @Override
-    public void createRequest(Long userId, Order order) {
+    public void createRequest(Long userId, Order order, String orderDays) {
 
         order.setActive(false);
         Request request = new Request();
         request.setOrder(order);
         request.setUserID(userId);
-
+        Calendar rentalDay = Calendar.getInstance();
+        rentalDay.add(Calendar.DAY_OF_MONTH, Integer.parseInt(orderDays));
         request.setDateOfCreating(Calendar.getInstance());
-        request.setRentalDate(Calendar.getInstance());
+        request.setRentalDate(rentalDay);
         request.setMessage(null);
         request.setRepairCost(null);
         request.setRequestStatus(RequestStatus.OPEN);
@@ -98,9 +100,16 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public List<Request> findCompleteRequest(Long id) {
-        List<Request> allRequests = findAllByUserId(id);
-        return allRequests.stream().filter(r-> r.getRequestStatus()==RequestStatus.COMPLETE).collect(Collectors.toList());
+    public List<Request> findCompleteRequestByUserId(Long id) {
+       return requestRepo.findAllByRequestStatusAndUserID(RequestStatus.COMPLETE,id);
+    }
+
+    @Override
+    public List<Request> findAllAwaitingPaymentAndActiveByUserId(Long id) {
+        List<Request> total = new ArrayList<>();
+        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.OPEN,id));
+        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.AWAITING_PAYMENT,id));
+        return total;
     }
 
 

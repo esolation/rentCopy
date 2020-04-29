@@ -25,7 +25,7 @@
                 <a class="nav-link" href="/hello">Главная<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">История заказов</a>
+                <a class="nav-link" href="/history">История заказов</a>
             </li>
 
             <li class="nav-item">

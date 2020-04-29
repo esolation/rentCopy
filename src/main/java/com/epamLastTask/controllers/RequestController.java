@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/cp/request")
@@ -18,9 +19,12 @@ public class RequestController {
     private RequestService requestService;
 
     @PostMapping("{order}")
-    public String createRequest(@AuthenticationPrincipal User user, @PathVariable Order order){
+    public String createRequest(@AuthenticationPrincipal User user,
+                                @PathVariable Order order,
+                                @RequestParam(name="totalCost") String totalCost,
+                                @RequestParam(name="orderDays") String orderDays){
 
-        requestService.createRequest(user.getId(),order);
+        requestService.createRequest(user.getId(),order,orderDays);
         return "redirect:/cp";
     }
 

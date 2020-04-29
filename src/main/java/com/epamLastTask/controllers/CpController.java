@@ -36,7 +36,7 @@ private RequestService requestService;
     public String getClientOrders(@AuthenticationPrincipal User user,
                                   Model model){
         model.addAttribute("user",(userService.findUserById(user.getId())));
-        model.addAttribute("requests", requestService.findAllByUserId(user.getId()));
+        model.addAttribute("requests", requestService.findAllAwaitingPaymentAndActiveByUserId(user.getId()));
 
 
         return "cp";

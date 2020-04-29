@@ -8,7 +8,7 @@ import com.epamLastTask.entities.enums.RequestStatus;
 import java.util.List;
 
 public interface RequestService {
-    void createRequest(Long userId, Order order);
+    void createRequest(Long userId, Order order, String orderDays);
     void removeRequest(Order order);
     void applyRequest(Request request, String message, String money);
     void completeRequest(Request request);
@@ -18,5 +18,6 @@ public interface RequestService {
     List<Request> findAllByUserId(Long id);
     List<Request> findActiveRequest(Long id);
     List<Request> findAwaitingPaymentRequest(Long id);
-    List<Request> findCompleteRequest(Long id);
+    List<Request> findCompleteRequestByUserId(Long id);
+    List<Request> findAllAwaitingPaymentAndActiveByUserId(Long id);
 }

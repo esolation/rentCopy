@@ -3,7 +3,7 @@
 <div class="container mt-3" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
     <div class="col-md-12">
-
+    <#if user.getOrder()[0]?has_content && user.getOrder()[0].isActive()>
     <table class="table">
         <thead class="thead-dark">
 
@@ -25,10 +25,10 @@
 
         <tr>
            <td  colspan="2" > <img class="mt-3 ml-1" style="width: 100px;" src="/img/${order.getPhotos()[0]}" alt=""> <a href="/order/${order.getId()}"> <span class="ml-5">${order.getCarModel()}</span></a></td>
-            <td id="carCost" class="align-middle"> <span class="alert alert-primary" role="alert">${order.getCost()}</span> </td>
+            <td  class="align-middle"> <span  class="alert alert-primary" role="alert">${order.getCost()}</span> </td>
             <form action="/cp/request/${order.getId()}" method="post">
             <td class="align-middle"><div class="form-group">
-                <select class="form-control" id="cost">
+                <select name="orderDays" class="form-control" id="${order.getId()?js_string}">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -37,10 +37,33 @@
                     </select>
 
                 </div></td>
-                <td class="align-middle"><div  class=""><span class="alert alert-danger" id="finalCost" role="alert">${order.getCost()}</span></div></td>
-            <td class="align-middle">
+
+
+                <td class="align-middle">
+                    <div  class="">
+
+
+                        <span class="alert alert-danger" id="${order.getId() + "cost"}" role="alert">${order.getCost()}</span>
+                    </div>
+                </td>
+                <td class="align-middle">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
-                <input type="text" name="finalCost" id="finalCost" value="">
+                    <#assign totalSum = 50>
+                    <script>
+
+                        <#--console.log(selectItem);-->
+                        $("#${order.getId()}").change(function () {
+
+                            var factor = $("#${order.getId()} option:selected").text();
+                            var total = factor * ${order.getCost()};
+
+                            $("#${order.getId()}cost").text(total);
+                            $("#${order.getId()}total").attr("value",total);
+
+                        })
+                    </script>
+                    <input type="hidden" name="totalCost" id="${order.getId()}total" value="${totalSum}">
+
                 <button type="submit" class="btn btn-success">Заказать</button>
         </form>
 
@@ -54,13 +77,20 @@
             </#if>
         </#list>
 
+
     </table>
+        <#else>
+            <div class="alert alert-info" role="alert">
+                Корзина пуста
+            </div>
+    </#if>
 
     </div>
 
 </div>
-               <div class="row">
+               <div class="row mt-5">
                    <div class="col-md-12">
+                       <#if requests[0]?has_content>
                        <table class="table">
                            <thead>
                            <tr>
@@ -117,14 +147,17 @@
                                            </div>
 
 
-                                       <#else>
-                                           <span class="badge badge-success">Завершен</span>
+
                                        </#if></td>
                                </tr>
                            </#list>
                            </tbody>
                        </table>
-
+                           <#else>
+                               <div class="alert alert-info" role="alert">
+                                   Активных или ожидающих оплаты заказов нет
+                               </div>
+                       </#if>
                    </div>
                </div>
 
@@ -135,6 +168,6 @@
 
 
 </div>
-<script src="js/cp.js"></script>
+
 </body>
 </html>
