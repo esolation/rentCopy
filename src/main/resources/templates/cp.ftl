@@ -55,14 +55,15 @@
                         $("#${order.getId()}").change(function () {
 
                             var factor = $("#${order.getId()} option:selected").text();
-                            var total = factor * ${order.getCost()};
-
+                            var carCost = "${order.getCost()}".replace(/\s/g, '');
+                            var total = factor * carCost ;
+                            console.log("${order.getCost()}".replace(/\s/g, ''));
                             $("#${order.getId()}cost").text(total);
                             $("#${order.getId()}total").attr("value",total);
 
                         })
                     </script>
-                    <input type="hidden" name="totalCost" id="${order.getId()}total" value="${totalSum}">
+                    <input type="hidden" name="totalCost" id="${order.getId()}total" value="">
 
                 <button type="submit" class="btn btn-success">Заказать</button>
         </form>

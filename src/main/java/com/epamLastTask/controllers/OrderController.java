@@ -23,7 +23,7 @@ private OrderService orderService;
     @GetMapping("{order}")
     public String order(@PathVariable Order order,@AuthenticationPrincipal User user,
                         Model model){
-        model.addAttribute("user_id",user.getId());
+        model.addAttribute("user_id",user);
         model.addAttribute("order",order);
         return "order";
     }

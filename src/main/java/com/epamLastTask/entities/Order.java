@@ -27,11 +27,20 @@ public class Order {
     @CollectionTable(name = "order_photo", joinColumns = @JoinColumn(name="order_id"))
     private List<String> photos = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="user_id")
-    private User user;
+    private List<User> user;
     @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
     private List<Request> request;
+
+    @PrePersist
+    public void addUser(){
+        user.forEach(u -> u.getOrder().add(this));
+    }
+    @PreRemove
+    public void removeUser(){
+        user.forEach(u -> u.getOrder().remove(this));
+    }
 
     public String getCarModel() {
         return carModel;
@@ -101,11 +110,11 @@ public class Order {
         return id;
     }
 
-    public User getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 

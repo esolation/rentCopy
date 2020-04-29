@@ -43,8 +43,8 @@ private RequestService requestService;
     }
 
     @PostMapping("remove/{order}")
-    public String removeOrder(@PathVariable Order order){
-        orderService.removeOrder(order);
+    public String removeOrder(@PathVariable Order order,@AuthenticationPrincipal User user){
+        orderService.removeOrder(user,order);
         return "redirect:/cp";
     }
 

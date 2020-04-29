@@ -23,11 +23,10 @@ public class OrderServiceImpl implements OrderService {
     private String uploadPath;
 
     @Override
-    public void removeOrder(Order order) {
+    public void removeOrder(User user, Order order) {
 
-        order.setUser(null);
-        order.setActive(true);
-        orderRepo.save(order);
+        orderRepo.delete(order);
+
     }
 
     @Override
@@ -50,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void addOrderToCard(Order order, User user) {
         if(order.isActive()){
-            order.setUser(user);
+            order.getUser().add(user);
             orderRepo.save(order);
         }
     }
