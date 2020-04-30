@@ -4,7 +4,10 @@ import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.Role;
 import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -49,6 +52,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User findUserById(Long id) {
         return userRepo.findUserById(id);
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public User getAuthenticationUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        Hibernate.initialize(user.getOrder());
+        return user;
     }
 
 

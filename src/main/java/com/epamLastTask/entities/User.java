@@ -1,11 +1,15 @@
 package com.epamLastTask.entities;
 
 import com.epamLastTask.entities.enums.Role;
+import org.hibernate.Hibernate;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,10 +18,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //@Access(AccessType.FIELD)
+    @NotBlank(message = "Пожалуйста введите Ваш логин")
+    @Length(max = 128, message = "Слишком большое")
     private String username;
+    @NotBlank(message = "Пожалуйста введите Ваш логин")
+    @Email(message = "Некоректный email")
     private String email;
+    @NotBlank(message = "Пожалуйста введите Ваш пароль")
+    @Length(max = 128, message = "Пароль слишком длинный")
     private String password;
+    @NotBlank(message = "Пожалуйста введите Ваш номер пасспорта")
+    private String passportNumb;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
     @Enumerated(EnumType.STRING)
@@ -25,8 +37,10 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Order> order;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return getRole();
     }
 
@@ -95,5 +109,13 @@ public class User implements UserDetails {
 
     public Long getId() {
         return id;
+    }
+
+    public String getPassportNumb() {
+        return passportNumb;
+    }
+
+    public void setPassportNumb(String passportNumb) {
+        this.passportNumb = passportNumb;
     }
 }

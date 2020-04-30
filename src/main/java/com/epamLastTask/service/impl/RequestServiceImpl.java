@@ -2,8 +2,10 @@ package com.epamLastTask.service.impl;
 
 import com.epamLastTask.entities.Order;
 import com.epamLastTask.entities.Request;
+import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.RequestStatus;
 import com.epamLastTask.repositories.RequestRepo;
+import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +21,21 @@ import java.util.stream.Collectors;
 public class RequestServiceImpl implements RequestService {
     @Autowired
     private RequestRepo requestRepo;
+    @Autowired
+    private UserRepo userRepo;
 
 
     @Transactional
     @Override
-    public void createRequest(Long userId, Order order, String orderDays) {
+    public void createRequest(User user, Order order, String orderDays) {
 
+        order.getUser().clear();
+        order.getUser().add(userRepo.findUserById(user.getId()));
         order.setActive(false);
         Request request = new Request();
         request.setOrder(order);
-        request.setUserID(userId);
+        request.setUserID(user.getId());
+        request.setUserName(user.getUsername());
         Calendar rentalDay = Calendar.getInstance();
         rentalDay.add(Calendar.DAY_OF_MONTH, Integer.parseInt(orderDays));
         request.setDateOfCreating(Calendar.getInstance());
@@ -49,7 +56,7 @@ public class RequestServiceImpl implements RequestService {
         if((message==null || money ==null)|| (message.equals("") || money.equals(""))){
             request.setRequestStatus(RequestStatus.COMPLETE);
             request.getOrder().setActive(true);
-            request.getOrder().setUser(null);
+            request.getOrder().getUser().clear();
         }
         else {
             request.setRequestStatus(RequestStatus.AWAITING_PAYMENT);

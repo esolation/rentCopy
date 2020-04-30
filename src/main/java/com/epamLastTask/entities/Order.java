@@ -1,12 +1,11 @@
 package com.epamLastTask.entities;
 
-import com.epamLastTask.entities.enums.RequestStatus;
-import com.epamLastTask.service.RequestService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="ord")
@@ -28,15 +27,19 @@ public class Order {
     private List<String> photos = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="user_id")
-    private List<User> user;
+    @JoinTable(name="users_order",
+            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    )
+    private Set<User> user;
     @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
     private List<Request> request;
 
-    @PrePersist
-    public void addUser(){
-        user.forEach(u -> u.getOrder().add(this));
-    }
+//    @PrePersist
+//    public void addUser()
+//    {
+//        user.forEach(u -> u.getOrder().add(this));
+//    }
     @PreRemove
     public void removeUser(){
         user.forEach(u -> u.getOrder().remove(this));
@@ -110,11 +113,12 @@ public class Order {
         return id;
     }
 
-    public List<User> getUser() {
+    public Set<User> getUser() {
         return user;
     }
 
-    public void setUser(List<User> user) {
+    @Transactional
+    public void setUser(Set<User> user) {
         this.user = user;
     }
 
@@ -125,4 +129,6 @@ public class Order {
     public void setRequest(List<Request> request) {
         this.request = request;
     }
+
+
 }

@@ -10,4 +10,5 @@ public interface OrderService {
     void removeOrder(User user, Order order);
     void createOrder(MultipartFile[] file, Order order) throws IOException;
     void addOrderToCard(Order order, User user);
+    boolean currentUserHaveThisOrder(User user, Order order);
 }

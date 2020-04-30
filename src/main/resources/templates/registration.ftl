@@ -20,54 +20,63 @@
 </head>
 <body>
 <div class="container">
-    <div class="d-flex justify-content-center h-100">
-        <div class="card">
-            <div class="card-header">
-                <h3>Вход</h3>
+    <h2>Регистрация</h2>
 
-            </div>
-            <div class="card-body">
-                <#if message??>
-                    ${message}
+    <form class="form-horizontal" action="registration" method="post">
+        <div class="form-group">
+            <label class="control-label col-xs-3 ${(userNameError??)?string('is-invalid','')}" for="login">Логин:</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="login" name="username" placeholder="Логин">
+                <#if userNameError??>
+                <div class="invalid-feedback">
+                    ${userNameError}
+                </div>
                 </#if>
-                <form action="/registration" method="post">
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Логин" name="username">
-
-                    </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password" name="password" class="form-control" placeholder="Пароль">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-mail"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Email" name="email">
-
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Регистрация" class="btn float-right login_btn">
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="#">Sign Up</a>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div>
             </div>
         </div>
-    </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="password">Пароль:</label>
+            <div class="col-xs-9">
+                <input type="password" name="password" class="form-control ${(passwordError??)?string('is-invalid','')}" id="password" placeholder="Введите пароль">
+                <#if passwordError??>
+                    <div class="invalid-feedback">
+                        ${passwordError}
+                    </div>
+                </#if>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="email">Email:</label>
+            <div class="col-xs-9">
+                <input type="email" name="email" class="form-control ${(emailError??)?string('is-invalid','')}" id="email" placeholder="Email">
+                <#if emailError??>
+                    <div class="invalid-feedback">
+                        ${emailError}
+                    </div>
+                </#if>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="postalAddress">Номер пасспорта:</label>
+            <div class="col-xs-9">
+                <input  class="form-control ${(passportNumb??)?string('is-invalid','')}" id="postalAddress" placeholder="КН 1111111">
+                <#if passportNumber??>
+                    <div class="invalid-feedback">
+                        ${passportNumber}
+                    </div>
+                </#if>
+            </div>
+        </div>
+
+
+        <input type="hidden" name="${_csrf}" value="${_csrf.token}">
+        <input type="submit" class="btn btn-success" value="Зарегистрироваться">
+    </form>
 </div>
 </body>
 </html>

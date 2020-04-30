@@ -11,13 +11,17 @@
                 <p class="text-secondary">Расход: ${order.getConsumption()} л.</p>
             <h4> <p class="mt-5">Цена аренды в день:<span class="badge badge-danger">${order.getCost()} р.</span></p></h4>
             <#if order.isActive()>
-                <#if order.getUser()?has_content>
-                    <#if order.getUser().contains(user_id)>
+                <#if order.getUser()[0]?has_content>
+                    <#if userHaveOrder>
                         <div class="alert alert-success" role="alert">
                             Данный автомобиль у вас в корзине!
                         </div>
 
-
+                    <#else>
+                        <form action="/order/${order.getId()}" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
+                        </form>
                     </#if>
 
                 <#else>

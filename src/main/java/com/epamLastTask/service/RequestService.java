@@ -3,12 +3,13 @@ package com.epamLastTask.service;
 import com.epamLastTask.entities.Order;
 import com.epamLastTask.entities.Request;
 
+import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.RequestStatus;
 
 import java.util.List;
 
 public interface RequestService {
-    void createRequest(Long userId, Order order, String orderDays);
+    void createRequest(User user, Order order, String orderDays);
     void removeRequest(Order order);
     void applyRequest(Request request, String message, String money);
     void completeRequest(Request request);
@@ -20,4 +21,5 @@ public interface RequestService {
     List<Request> findAwaitingPaymentRequest(Long id);
     List<Request> findCompleteRequestByUserId(Long id);
     List<Request> findAllAwaitingPaymentAndActiveByUserId(Long id);
+
 }

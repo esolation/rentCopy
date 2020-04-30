@@ -24,7 +24,7 @@ public class RequestController {
                                 @RequestParam(name="totalCost") String totalCost,
                                 @RequestParam(name="orderDays") String orderDays){
 
-        requestService.createRequest(user.getId(),order,orderDays);
+        requestService.createRequest(user,order,orderDays);
         return "redirect:/cp";
     }
 

@@ -19,6 +19,7 @@ public class Request {
     private RequestStatus requestStatus;
     private Double repairCost;
     private Long userID;
+    private String userName;
     private String message;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
@@ -83,5 +84,13 @@ public class Request {
 
     public void setUserID(Long userID) {
         this.userID = userID;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

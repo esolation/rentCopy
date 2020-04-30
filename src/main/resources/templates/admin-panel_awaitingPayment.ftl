@@ -37,7 +37,7 @@
 
                         <th scope="row">${request.getId()}</th>
                         <td><a href="/order/${request.getOrder().getId()}"> ${request.getOrder().getCarModel()}</a></td>
-                        <td>${request.getOrder().getUser().getUsername()}</td>
+                        <td>${request.getOrder().getUser()[0].getUsername()}</td>
                         <td>${request.getDateOfCreating().getTime()?date}</td>
                         <td>${request.getRentalDate().getTime()?date}</td>
 
