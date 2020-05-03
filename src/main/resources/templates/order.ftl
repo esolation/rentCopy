@@ -37,14 +37,7 @@
         </div>
         <div class="col-md-8 ml-5" style="max-width: 300px;">
             <img src="/img/${order.getPhotos()[0]}" alt="" style="width: 600px;" class="main_img" >
-                    <div class="row">
 
-                        <#list order.getPhotos() as photo>
-
-                          <div id="off_img" class="col-md-4 d-block"><img class="mt-3 ml-1 w-100" src="/img/${photo}" alt=""></div>
-                        </#list>
-
-                    </div>
                     </div>
                 </div>
 
@@ -56,7 +49,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-8" id="description">
             <h3><label for="description">Описание автомобиля</label></h3>
-           <p id="description" class="border"> ${order.getDescription()}</p>
+           <p id="description" class="border ml-3 p-3"> ${order.getDescription()}</p>
         </div>
 
     </div>

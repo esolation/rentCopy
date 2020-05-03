@@ -3,7 +3,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-2" style="height: 300px;">
-            <ul class="nav nav-pills nav-stacked">
+            <a href="/createOrder"><div class="btn btn-success">Добавить авто</div></a>
+            <ul class="nav nav-pills nav-stacked mt-3">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/active">Активные заказы</a>
                 </li>
@@ -56,6 +57,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-<script src="js/admin_page.js"></script>
+<script src="../static/js/admin_page.js"></script>
 </body>
 </html>

@@ -40,7 +40,6 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return getRole();
     }
 
@@ -102,7 +101,7 @@ public class User implements UserDetails {
     public Set<Order> getOrder() {
         return order;
     }
-    @Transactional
+
     public void setOrder(Order order) {
         this.order.add(order);
     }

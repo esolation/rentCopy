@@ -39,4 +39,8 @@ public class MainPageController {
         model.addAttribute("requests", requestService.findCompleteRequestByUserId(user.getId()));
         return "history";
     }
+    @GetMapping
+    public String redirectToHello(){
+        return "redirect:hello";
+    }
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-12">
 
 <form action="/createOrder" enctype="multipart/form-data" method="post">
@@ -41,7 +41,7 @@
     <div id="pasteFile">
 
     </div>
-    <button id="addPhoto" type="button" class="btn btn-primary mb-2">Добавить еще фото</button>
+
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <button type="submit" class="btn btn-success mb-2">Отправить</button>
 </form>
