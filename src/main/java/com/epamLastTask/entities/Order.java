@@ -21,7 +21,7 @@ public class Order {
     private Double capacity;
     private Double consumption;
     private Integer year;
-    private boolean isActive;
+    private boolean avaliable;
     @ElementCollection(targetClass = String.class, fetch = FetchType.LAZY)
     @CollectionTable(name = "order_photo", joinColumns = @JoinColumn(name="order_id"))
     private List<String> photos = new ArrayList<>();
@@ -77,12 +77,12 @@ public class Order {
         this.photos.add(photos);
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isAvaliable() {
+        return avaliable;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setAvaliable(boolean avaliable) {
+        this.avaliable = avaliable;
     }
 
     public Double getCapacity() {
