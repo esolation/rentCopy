@@ -37,10 +37,10 @@
         </ul>
         <#if isAdmin??>
         <#if isAdmin == true>
-            <a href="/admin/active" class="btn btn-success mr-3">Админ панель</a>
-            <a href="/cp" class="btn btn-success">Панель пользователя</a>
+            <a href="/admin/active" class="btn btn-primary mr-3">Админ панель</a>
+            <a href="/cp" class="btn btn-success">Заказы</a>
             <#else>
-                <a href="/cp" class="btn btn-success">Панель пользователя</a>
+                <a href="/cp" class="btn btn-success">Заказы</a>
         </#if>
         </#if>
 

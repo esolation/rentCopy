@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
                 String resultFileName = uuidFile + "." + fileName.getOriginalFilename();
                 fileName.transferTo(new File(uploadPath+"/"+resultFileName));
                 order.setPhotos(resultFileName);
-                order.setActive(true);
+                order.setAvaliable(true);
             }
         }
         orderRepo.save(order);
@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void addOrderToCard(Order order, User user) {
-        if(order.isActive()){
+        if(order.isAvaliable()){
             order.getUser().add(user);
             orderRepo.save(order);
         }

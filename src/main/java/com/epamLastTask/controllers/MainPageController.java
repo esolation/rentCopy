@@ -7,6 +7,9 @@ import com.epamLastTask.repositories.OrderRepo;
 import com.epamLastTask.service.RequestService;
 import com.epamLastTask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +31,10 @@ public class MainPageController {
 
     @GetMapping("/hello")
     public String main_page(@AuthenticationPrincipal User user,
-            Model model){
+                            Model model, @PageableDefault(sort = {"id"},direction = Sort.Direction.DESC, value = 6) Pageable pageable){
 
-        model.addAttribute("orders", orderRepo.findAll());
+        model.addAttribute("page", orderRepo.findAllByAvaliable(true,pageable));
+        model.addAttribute("url","/hello");
         model.addAttribute("isAdmin", userService.isAdmin(user));
         return "hello";
     }

@@ -3,7 +3,7 @@
 <div class="container mt-3" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
     <div class="col-md-12">
-    <#if user.getOrder()[0]?has_content && user.getOrder()[0].isActive()>
+    <#if user.getOrder()[0]?has_content && user.getOrder()[0].isAvaliable()>
     <table class="table">
         <thead class="thead-dark">
 
@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <#list user.getOrder() as order>
-            <#if order.isActive()>
+            <#if order.isAvaliable()>
 
         <tbody>
 

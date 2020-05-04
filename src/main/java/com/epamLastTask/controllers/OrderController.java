@@ -21,16 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/order")
 public class OrderController {
 @Autowired
-private UserRepo userRepo;
-@Autowired
 private OrderService orderService;
-@Autowired
-private UserService userService;
+
     @GetMapping("{order}")
     public String order(@PathVariable Order order,@AuthenticationPrincipal User user,
                         Model model){
-
-
         model.addAttribute("userHaveOrder",orderService.currentUserHaveThisOrder(user,order));
         model.addAttribute("order",order);
         return "order";
@@ -40,7 +35,6 @@ private UserService userService;
     public String addOrderToCard(@PathVariable Order order,
                            @AuthenticationPrincipal User user,
                            Model model){
-
        orderService.addOrderToCard(order,user);
         return "redirect:/hello";
     }

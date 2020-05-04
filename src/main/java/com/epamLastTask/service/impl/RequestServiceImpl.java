@@ -31,7 +31,7 @@ public class RequestServiceImpl implements RequestService {
 
         order.getUser().clear();
         order.getUser().add(userRepo.findUserById(user.getId()));
-        order.setActive(false);
+        order.setAvaliable(false);
         Request request = new Request();
         request.setOrder(order);
         request.setUserID(user.getId());
@@ -55,7 +55,7 @@ public class RequestServiceImpl implements RequestService {
     public void applyRequest(Request request, String message, String money) {
         if((message==null || money ==null)|| (message.equals("") || money.equals(""))){
             request.setRequestStatus(RequestStatus.COMPLETE);
-            request.getOrder().setActive(true);
+            request.getOrder().setAvaliable(true);
             request.getOrder().getUser().clear();
         }
         else {
@@ -69,7 +69,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void completeRequest(Request request) {
         request.setRequestStatus(RequestStatus.COMPLETE);
-        request.getOrder().setActive(true);
+        request.getOrder().setAvaliable(true);
         request.getOrder().setUser(null);
         requestRepo.save(request);
     }

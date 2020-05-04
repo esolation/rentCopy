@@ -23,7 +23,7 @@
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3>Вход</h3>
+                <h3 style="color:black;">Вход</h3>
                 <div class="d-flex justify-content-end social_icon">
 
                     <span><i class="fab fa-google-plus-square"></i></span>
@@ -46,9 +46,7 @@
                         <input type="password" name="password" class="form-control" placeholder="Пароль">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                     </div>
-                    <div class="row align-items-center remember">
-                        <input type="checkbox">Remember Me
-                    </div>
+
                     <div class="form-group">
                         <input type="submit" value="Войти" class="btn float-right login_btn">
                     </div>
@@ -58,9 +56,7 @@
                 <div class="d-flex justify-content-center links">
                     <a href="/registration">Регистрация</a>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div>
+
             </div>
         </div>
     </div>

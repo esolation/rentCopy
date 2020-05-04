@@ -10,7 +10,7 @@
                 <p class="text-secondary">Объем: ${order.getCapacity()} л.</p>
                 <p class="text-secondary">Расход: ${order.getConsumption()} л.</p>
             <h4> <p class="mt-5">Цена аренды в день:<span class="badge badge-danger">${order.getCost()} р.</span></p></h4>
-            <#if order.isActive()>
+            <#if order.isAvaliable()>
                 <#if order.getUser()[0]?has_content>
                     <#if userHaveOrder>
                         <div class="alert alert-success" role="alert">
