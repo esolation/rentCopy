@@ -12,12 +12,15 @@
     <div class="card mb-3 mt-3" style="width: 18rem;">
         <img class="card-img-top" src="/img/${order.getPhotos()[0]}"  alt="${order.getCarModel()}" height="200" >
         <div class="card-body">
-            <h5 class="card-title">${order.getCarModel()}</h5>
-            <p class="card-text badge badge-danger">Год: ${order.getYear()}</p>
-            <p class="card-text badge badge-danger">Объем: ${order.getCapacity()}</p>
-            <p class="card-text badge badge-danger">Расход: ${order.getConsumption()} л.</p>
+            <h6 class="card-title">
+                <div class="alert alert-dark" role="alert">
+                   <div class="text-center">${order.getCarModel()}</div>
+                </div></h6>
+            <p ><strong>Год: ${order.getYear()}</strong></p>
+            <p ><strong>Объем: ${order.getCapacity()}</strong></p>
+            <p><strong>Расход: ${order.getConsumption()} л.</strong></p>
             <a href="/order/${order.getId()}" class="btn btn-info">Подробнее</a>
-            <span class="card-text ml-3 badge badge-warning">Цена: ${order.getCost()}</span> BYN
+            <span class="card-text ml-3">Цена: ${order.getCost()} BYN</span>
         </div>
     </div>
         </div>

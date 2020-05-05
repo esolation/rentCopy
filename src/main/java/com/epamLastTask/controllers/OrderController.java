@@ -28,6 +28,7 @@ private OrderService orderService;
                         Model model){
         model.addAttribute("userHaveOrder",orderService.currentUserHaveThisOrder(user,order));
         model.addAttribute("order",order);
+
         return "order";
     }
 
@@ -36,6 +37,9 @@ private OrderService orderService;
                            @AuthenticationPrincipal User user,
                            Model model){
        orderService.addOrderToCard(order,user);
-        return "redirect:/hello";
+        model.addAttribute("userHaveOrder",orderService.currentUserHaveThisOrder(user,order));
+        model.addAttribute("order",order);
+        model.addAttribute("model",true);
+        return "order";
     }
 }

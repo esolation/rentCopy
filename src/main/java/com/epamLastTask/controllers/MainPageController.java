@@ -1,5 +1,6 @@
 package com.epamLastTask.controllers;
 
+import com.epamLastTask.entities.Order;
 import com.epamLastTask.entities.Request;
 import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.RequestStatus;
@@ -32,10 +33,13 @@ public class MainPageController {
     @GetMapping("/hello")
     public String main_page(@AuthenticationPrincipal User user,
                             Model model, @PageableDefault(sort = {"id"},direction = Sort.Direction.DESC, value = 6) Pageable pageable){
-
+        User usr = userService.findUserById(user.getId());
+        List<Order> userOrders = orderRepo.findAllOrderByUser(usr);
+        List<Order> ord =  orderRepo.findAllByAvaliable(true);
         model.addAttribute("page", orderRepo.findAllByAvaliable(true,pageable));
         model.addAttribute("url","/hello");
         model.addAttribute("isAdmin", userService.isAdmin(user));
+        model.addAttribute("userOrders", userOrders);
         return "hello";
     }
     @GetMapping("/history")
@@ -43,8 +47,5 @@ public class MainPageController {
         model.addAttribute("requests", requestService.findCompleteRequestByUserId(user.getId()));
         return "history";
     }
-    @GetMapping
-    public String redirectToHello(){
-        return "redirect:hello";
-    }
+
 }

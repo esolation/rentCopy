@@ -2,6 +2,30 @@
 <@t.header></@t.header>
 
 <div class="container mt-5">
+    <#if model??>
+        <button type="button" id="orderModalButton" style="visibility: hidden"  class="btn btn-primary" data-toggle="modal" data-target="#orderModal">
+            Launch demo modal
+        </button>
+        <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Автомобиль готов к заказу</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Вы добавили данный автомобиль себе в корзину, можете перейти в корзину для оформления заказа, либо продолжить просмотр.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить просмотр</button>
+                        <a href="/cp"><button type="button" class="btn btn-primary">Перейти в корзину</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </#if>
     <div class="row">
         <div class="col-md-4 ">
 
