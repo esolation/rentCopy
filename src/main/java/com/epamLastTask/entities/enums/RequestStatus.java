@@ -1,5 +1,5 @@
 package com.epamLastTask.entities.enums;
 
 public enum RequestStatus {
-    COMPLETE, OPEN, AWAITING_PAYMENT
+    COMPLETE, OPEN, AWAITING_PAYMENT, REJECTED, AWAITING_PROCESSING
 }

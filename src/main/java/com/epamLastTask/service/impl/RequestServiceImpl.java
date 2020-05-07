@@ -42,7 +42,7 @@ public class RequestServiceImpl implements RequestService {
         request.setRentalDate(rentalDay);
         request.setMessage(null);
         request.setRepairCost(null);
-        request.setRequestStatus(RequestStatus.OPEN);
+        request.setRequestStatus(RequestStatus.AWAITING_PROCESSING);
         requestRepo.save(request);
     }
 
@@ -111,12 +111,29 @@ public class RequestServiceImpl implements RequestService {
        return requestRepo.findAllByRequestStatusAndUserID(RequestStatus.COMPLETE,id);
     }
 
+    @Transactional
     @Override
-    public List<Request> findAllAwaitingPaymentAndActiveByUserId(Long id) {
+    public List<Request> findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(Long id) {
         List<Request> total = new ArrayList<>();
         total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.OPEN,id));
         total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.AWAITING_PAYMENT,id));
+        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.AWAITING_PROCESSING,id));
+        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.REJECTED,id));
         return total;
+    }
+
+    @Override
+    public void activeRequest(Request request) {
+        request.setRequestStatus(RequestStatus.OPEN);
+        requestRepo.save(request);
+    }
+
+
+    @Override
+    public void rejectRequest(Request request, String message) {
+        request.setRequestStatus(RequestStatus.REJECTED);
+        request.setMessage(message);
+        requestRepo.save(request);
     }
 
 

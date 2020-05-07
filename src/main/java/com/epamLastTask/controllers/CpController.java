@@ -28,8 +28,8 @@ private RequestService requestService;
     public String getClientOrders(@AuthenticationPrincipal User user,
                                   Model model){
         model.addAttribute("user",(userService.findUserById(user.getId())));
-        model.addAttribute("requests", requestService.findAllAwaitingPaymentAndActiveByUserId(user.getId()));
-
+        model.addAttribute("requests", requestService.findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(user.getId()));
+        model.addAttribute("processed",true);
 
         return "cp";
     }

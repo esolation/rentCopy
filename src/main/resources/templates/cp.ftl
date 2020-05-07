@@ -2,6 +2,30 @@
 <@t.header></@t.header>
 <div class="container mt-3" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
+    <#if processed??>
+        <button type="button" id="processedModalButton" style="visibility: hidden"  class="btn btn-primary" data-toggle="modal" data-target="#processedModal">
+            Launch demo modal
+        </button>
+        <div class="modal fade" id="processedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Автомобиль готов к заказу</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Вы успешно оплатили заказ. Ваша заявка находится на рассмотрении администратора.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </#if>
     <div class="col-md-12">
     <#if user.getOrder()[0]?has_content && user.getOrder()[0].isAvaliable()>
     <table class="table">
@@ -118,7 +142,9 @@
                                    <td>${request.getRentalDate().getTime()?date}</td>
                                    <td><#if request.getRequestStatus()=="OPEN">
                                            <span class="badge badge-primary">Активен</span>
-                                       <#elseif request.getRequestStatus() =="AWAITING_PAYMENT">
+                                           <#elseif request.getRequestStatus()=="AWAITING_PROCESSING">
+                                               <span class="badge badge-warning">Обрабатывается</span>
+                                       <#else>
                                            <div>
                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#${request.getId()}">
                                                    Требуется оплата
@@ -174,6 +200,6 @@
 
 
 </div>
-
+<script src="../../js/cp.js"></script>
 </body>
 </html>

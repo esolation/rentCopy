@@ -26,12 +26,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
     @Override
-
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepo.findByUsername(s);
     }
-
-
 
     @Override
     public boolean saveUser(User user) {
@@ -53,6 +50,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User findUserById(Long id) {
         return userRepo.findUserById(id);
     }
+
     @Transactional(readOnly = true)
     @Override
     public User getAuthenticationUser() {

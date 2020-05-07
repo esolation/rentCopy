@@ -6,6 +6,9 @@
             <a href="/createOrder"><div class="btn btn-success">Добавить авто</div></a>
             <ul class="nav nav-pills nav-stacked mt-3">
                 <li class="nav-item">
+                    <a class="nav-link" href="/admin/processing">Заказы для рассмотрения</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/admin/active">Активные заказы</a>
                 </li>
                 <li class="nav-item">

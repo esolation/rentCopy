@@ -45,14 +45,19 @@
                         <form action="/order/${order.getId()}" method="post">
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                             <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
+
                         </form>
+                        <h2><button class="btn btn-primary" >Заказать в 1 клик</button></h2>
+
                     </#if>
 
                 <#else>
                     <form action="/order/${order.getId()}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
+
                     </form>
+                    <h2><button class="btn btn-primary" >Заказать в 1 клик</button></h2>
                 </#if>
 
 

@@ -20,6 +20,9 @@ public interface RequestService {
     List<Request> findActiveRequest(Long id);
     List<Request> findAwaitingPaymentRequest(Long id);
     List<Request> findCompleteRequestByUserId(Long id);
-    List<Request> findAllAwaitingPaymentAndActiveByUserId(Long id);
+    List<Request> findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(Long id);
 
+    void activeRequest(Request request);
+
+    void rejectRequest(Request request, String message);
 }

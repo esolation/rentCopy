@@ -31,9 +31,7 @@ public class AdminController {
     }
     @GetMapping("awaitingPayments")
     public String adminPageAwaitingPayment(Model model){
-
         model.addAttribute("requests",requestService.findAllByRequestStatus(RequestStatus.AWAITING_PAYMENT));
-
         return "admin-panel_awaitingPayment";
     }
 
@@ -52,5 +50,23 @@ public class AdminController {
         requestService.applyRequest(requestId,message,money);
         return "redirect:/admin/active";
     }
+    @GetMapping("processing")
+    public String processingRequests(Model model){
+        model.addAttribute("requests", requestService.findAllByRequestStatus(RequestStatus.AWAITING_PROCESSING));
+        return "admin-panel_processing";
+    }
+    @GetMapping("processing/active/{request}")
+    public String activeRequest(@PathVariable Request request){
+        requestService.activeRequest(request);
+        return "redirect:/admin/processing";
+    }
+
+    @GetMapping("processing/reject/{request}")
+    public String rejectOrder(@PathVariable Request request, String message){
+        requestService.rejectRequest(request, message);
+        return "redirect:admin/processing";
+    }
+
+
 
 }

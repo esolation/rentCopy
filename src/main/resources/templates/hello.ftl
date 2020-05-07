@@ -12,10 +12,10 @@
     <div class="card mb-3 mt-3" style="width: 18rem;">
         <img class="card-img-top" src="/img/${order.getPhotos()[0]}"  alt="${order.getCarModel()}" height="200" >
         <div class="card-body">
-            <h6 class="card-title">
-                <div class="alert alert-dark" role="alert">
+            <h5 class="card-title">
                    <div class="text-center">${order.getCarModel()}</div>
-                </div></h6>
+                </h5>
+            <hr>
             <p ><strong>Год: ${order.getYear()}</strong></p>
             <p ><strong>Объем: ${order.getCapacity()}</strong></p>
             <p><strong>Расход: ${order.getConsumption()} л.</strong></p>
