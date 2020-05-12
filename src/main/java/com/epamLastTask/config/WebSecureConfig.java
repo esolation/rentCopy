@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -39,5 +42,6 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userServiceImpl)
                 .passwordEncoder(passwordEncoder);
+
     }
 }

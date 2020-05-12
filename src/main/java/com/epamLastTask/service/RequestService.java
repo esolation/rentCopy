@@ -25,4 +25,6 @@ public interface RequestService {
     void activeRequest(Request request);
 
     void rejectRequest(Request request, String message);
+
+    void deleteRejected(Request request);
 }

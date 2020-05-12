@@ -108,7 +108,10 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public List<Request> findCompleteRequestByUserId(Long id) {
-       return requestRepo.findAllByRequestStatusAndUserID(RequestStatus.COMPLETE,id);
+        List<Request> total = new ArrayList<>();
+       total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.COMPLETE,id));
+       total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.REJECTED_HISTORY,id));
+       return total;
     }
 
     @Transactional
@@ -128,11 +131,19 @@ public class RequestServiceImpl implements RequestService {
         requestRepo.save(request);
     }
 
-
+    @Transactional
     @Override
     public void rejectRequest(Request request, String message) {
         request.setRequestStatus(RequestStatus.REJECTED);
+        request.getOrder().setAvaliable(true);
+        request.getOrder().setUser(null);
         request.setMessage(message);
+        requestRepo.save(request);
+    }
+
+    @Override
+    public void deleteRejected(Request request) {
+        request.setRequestStatus(RequestStatus.REJECTED_HISTORY);
         requestRepo.save(request);
     }
 

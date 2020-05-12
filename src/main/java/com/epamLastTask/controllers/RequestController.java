@@ -41,4 +41,9 @@ public class RequestController {
             requestService.completeRequest(request);
         return "redirect:/cp";
     }
+    @PostMapping("deleteRejected/{request}")
+    public String deleteRejectedRequest(@PathVariable Request request){
+        requestService.deleteRejected(request);
+        return "redirect:/cp";
+    }
 }

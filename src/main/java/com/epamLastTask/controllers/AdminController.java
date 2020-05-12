@@ -61,10 +61,10 @@ public class AdminController {
         return "redirect:/admin/processing";
     }
 
-    @GetMapping("processing/reject/{request}")
-    public String rejectOrder(@PathVariable Request request, String message){
+    @PostMapping("processing/reject/{request}")
+    public String rejectOrder(@PathVariable Request request,@RequestParam(name = "message") String message){
         requestService.rejectRequest(request, message);
-        return "redirect:admin/processing";
+        return "redirect:/admin/processing";
     }
 
 

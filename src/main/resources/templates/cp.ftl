@@ -1,5 +1,8 @@
 <#import "main_template.ftl" as t>
-<@t.header></@t.header>
+<@t.header>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</@t.header>
 <div class="container mt-3" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
     <#if processed??>
@@ -30,7 +33,6 @@
     <#if user.getOrder()[0]?has_content && user.getOrder()[0].isAvaliable()>
     <table class="table">
         <thead class="thead-dark">
-
         <tr>
 
             <th scope="col">Автомобиль</th>
@@ -41,6 +43,7 @@
             <th scope="col"></th>
 
         </tr>
+
         </thead>
         <#list user.getOrder() as order>
             <#if order.isAvaliable()>
@@ -70,8 +73,6 @@
 
                 <td class="align-middle">
                     <div  class="">
-
-
                         <span class="alert alert-danger" id="${order.getId() + "cost"}" role="alert">${order.getCost()}</span>
                     </div>
                 </td>
@@ -143,7 +144,17 @@
                                    <td><#if request.getRequestStatus()=="OPEN">
                                            <span class="badge badge-primary">Активен</span>
                                            <#elseif request.getRequestStatus()=="AWAITING_PROCESSING">
-                                               <span class="badge badge-warning">Обрабатывается</span>
+                                               <button type="button" class="btn  btn-warning" data-toggle="popover" title="Обработка заказа" data-content="Вы успешно отплатили заказ. После рассмотрения вашей заявки администратором вы сможете забрать автомобиль">Обрабатывается</button>
+                                           <#elseif request.getRequestStatus()=="REJECTED">
+                                           <div>
+                                           <button style="float: left;" type="button" class="btn btn-sm btn-danger" data-toggle="popover" title="Причина отказа" data-content="${request.getMessage()}. Деньги возвращены на Ваш баланс.">Отклонено</button>
+                                          <span>
+                                           <form class="form-horizontal ml-2" action="/cp/request/deleteRejected/${request.getId()}" method="post">
+                                               <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                               <button type="submit" class="btn btn-sm btn-danger ml-2"><i class="fas fa-window-close"></i></button>
+                                           </form>
+                                           </span>
+                                           </div>
                                        <#else>
                                            <div>
                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#${request.getId()}">

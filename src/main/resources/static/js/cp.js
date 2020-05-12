@@ -1,3 +1,5 @@
 $(function () {
-    $("#processedModalButton").click();
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 })
