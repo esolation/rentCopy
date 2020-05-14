@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,7 +28,7 @@ public class RequestServiceImpl implements RequestService {
 
     @Transactional
     @Override
-    public void createRequest(User user, Order order, String orderDays) {
+    public void createRequest(User user, Order order, Date orderBeginning, Date orderEnding) {
 
         order.getUser().clear();
         order.getUser().add(userRepo.findUserById(user.getId()));
@@ -36,13 +37,21 @@ public class RequestServiceImpl implements RequestService {
         request.setOrder(order);
         request.setUserID(user.getId());
         request.setUserName(user.getUsername());
-        Calendar rentalDay = Calendar.getInstance();
-        rentalDay.add(Calendar.DAY_OF_MONTH, Integer.parseInt(orderDays));
-        request.setDateOfCreating(Calendar.getInstance());
-        request.setRentalDate(rentalDay);
+        //Creating dates
+
+        Calendar dayOfCreating = Calendar.getInstance();
+        dayOfCreating.setTime(orderBeginning);
+        Calendar dayOfEnding = Calendar.getInstance();
+        dayOfEnding.setTime(orderEnding);
+        request.setDateOfCreating(dayOfCreating);
+        request.setRentalDate(dayOfEnding);
+        //Ending days creating
+
         request.setMessage(null);
         request.setRepairCost(null);
         request.setRequestStatus(RequestStatus.AWAITING_PROCESSING);
+
+        request.setRentCost((int)(ChronoUnit.DAYS.between(dayOfCreating.toInstant(),dayOfEnding.toInstant())* order.getCost()));
         requestRepo.save(request);
     }
 

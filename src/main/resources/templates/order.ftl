@@ -1,5 +1,6 @@
 <#import "main_template.ftl" as t>
-<@t.header></@t.header>
+<@t.header>
+</@t.header>
 
 <div class="container mt-5">
     <#if model??>
@@ -47,7 +48,8 @@
                             <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
 
                         </form>
-                        <h2><button class="btn btn-primary" >Заказать в 1 клик</button></h2>
+                        <h2><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
+
 
                     </#if>
 
@@ -56,76 +58,56 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
                     </form>
-                    <h2><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Заказать в 1 клик</button></h2>
-
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                    <tr>
-
-                                        <th scope="col">Цена в сутки</th>
-                                        <th scope="col">Дней аренды</th>
-                                        <th scope="col">Общая цена</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <form action="/cp/request/${order.getId()}" method="post">
-                                    <td class="align-middle"><div class="alert alert-info" role="alert">
-                                            ${order.getCost()}
-                                        </div></td>
-                                        <td class="align-middle"><div class="form-group">
-                                                <select name="orderDays" class="form-control" id="${order.getId()?js_string}">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                </select>
-                                            </div></td>
-                                        <td class="align-middle">
-                                            <div class="alert alert-danger" role="alert" id="${order.getId() + "cost"}">
-                                                ${order.getCost()}
-                                            </div>
-                                        </td>
-                                        <td class="align-center">
-                                            <button type="submit" class="btn btn-success">Заказать</button>
-                                        </td>
-                                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                        <input type="hidden" name="totalCost" id="${order.getId()}total" value="">
-                                        <script>
-                                            $("#${order.getId()}").change(function () {
-                                                var factor = $("#${order.getId()} option:selected").text();
-                                                var carCost = "${order.getCost()}".replace(/\s/g, '');
-                                                var total = factor * carCost ;
-                                                //console.log("${order.getCost()}".replace(/\s/g, '') * 2);
-                                                $("#${order.getId()}cost").text(total);
-                                                $("#${order.getId()}total").attr("value",total);
-                                            })
-                                        </script>
-
-                                    </form>
-                                    </tbody>
-
-                                </table>
+                    <h2><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
 
 
-
-                            </div>
-                        </div>
-                    </div>
                 </#if>
 
 
             </#if>
 
+        </div>
+        <div class="modal fade" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+
+                            <th scope="col">Цена в сутки</th>
+                            <th scope="col">Начало аренды</th>
+                            <th scope="col">Конец аренды</th>
+                            <th scope="col">Общая цена</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form action="/cp/request/${order.getId()}" method="post">
+                            <td class="align-middle"><div class="alert alert-info" role="alert">
+                                    ${order.getCost()}
+                                </div></td>
+                            <td class="align-middle">
+                                <input type="date" id="${order.getId()}" name="dateOfBeginning">
+                            </td>
+                            <td class="align-middle">
+                                <input type="date" class="date" name="dateOfEnding">
+                            </td>
+                            <td class="align-middle">
+                                <div class="alert alert-danger" role="alert" id="${order.getId() + "cost"}">
+                                    ${order.getCost()}
+                                </div>
+                            </td>
+                            <td class="align-center">
+                                <button type="submit" class="btn btn-success">Заказать</button>
+                            </td>
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <input type="hidden" name="totalCost" id="${order.getId()}total" value="">
+
+                        </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div class="col-md-8 ml-5" style="max-width: 300px;">
             <img src="/img/${order.getPhotos()[0]}" alt="" style="width: 600px;" class="main_img" >

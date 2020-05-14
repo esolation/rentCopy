@@ -5,6 +5,7 @@ import com.epamLastTask.entities.User;
 import com.epamLastTask.repositories.OrderRepo;
 import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.OrderService;
+import com.epamLastTask.service.RequestService;
 import com.epamLastTask.service.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ import java.util.stream.IntStream;
 public class OrderController {
 @Autowired
 private OrderService orderService;
+@Autowired
+private RequestService requestService;
 
     @GetMapping("{order}")
     public String order(@PathVariable Order order,@AuthenticationPrincipal User user,
@@ -46,5 +49,13 @@ private OrderService orderService;
         model.addAttribute("model",true);
 
         return "order";
+    }
+
+    @GetMapping("/myOrders")
+    public String getMyOrders(@AuthenticationPrincipal User user,
+                              Model model){
+
+        model.addAttribute("requests", requestService.findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(user.getId()));
+        return "my-orders";
     }
 }

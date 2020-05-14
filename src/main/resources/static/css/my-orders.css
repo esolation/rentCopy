@@ -1,0 +1,13 @@
+.processing{
+    animation:blinking 3s infinite;
+    -webkit-animation: blink1 3s linear infinite;
+}
+@keyframes processing{
+    from { opacity: 1; /* Непрозрачный текст */ }
+    to { opacity: 0;}
+}
+@-webkit-keyframes processing {
+    50% { color: rgb(34, 34, 34); }
+    51% { color: rgba(34, 34, 34, 0); }
+    100% { color: rgba(34, 34, 34, 0); }
+}

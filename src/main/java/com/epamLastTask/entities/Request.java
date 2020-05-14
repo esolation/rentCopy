@@ -21,6 +21,7 @@ public class Request {
     private Long userID;
     private String userName;
     private String message;
+    private int rentCost;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
@@ -92,5 +93,13 @@ public class Request {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getRentCost() {
+        return rentCost;
+    }
+
+    public void setRentCost(int rentCost) {
+        this.rentCost = rentCost;
     }
 }

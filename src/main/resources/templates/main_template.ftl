@@ -41,7 +41,9 @@
             <a href="/admin/active" class="btn btn-primary mr-3">Админ панель</a>
             <a href="/cp" class="btn btn-success">Корзина <i class="fas fa-cart-arrow-down"></i></a>
             <#else>
+                <a href="/order/myOrders" class="btn btn-info mr-2">Мои заказы <i class="fas fa-car"></i></a>
                 <a href="/cp" class="btn btn-danger">Корзина <i class="fas fa-cart-arrow-down"></i></a>
+
         </#if>
         </#if>
 

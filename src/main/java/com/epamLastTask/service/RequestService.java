@@ -6,10 +6,11 @@ import com.epamLastTask.entities.Request;
 import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.RequestStatus;
 
+import java.util.Date;
 import java.util.List;
 
 public interface RequestService {
-    void createRequest(User user, Order order, String orderDays);
+    void createRequest(User user, Order order, Date orderBeginning, Date orderEnding);
     void removeRequest(Order order);
     void applyRequest(Request request, String message, String money);
     void completeRequest(Request request);
