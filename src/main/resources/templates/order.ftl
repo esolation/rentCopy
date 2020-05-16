@@ -48,7 +48,7 @@
                             <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
 
                         </form>
-                        <h2><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
+                        <h2><button  type="button" class="btn btn-primary oneClickButton" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
 
 
                     </#if>
@@ -58,7 +58,7 @@
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
                     </form>
-                    <h2><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
+                    <h2><button  type="button" class="btn btn-primary oneClickButton" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
 
 
                 </#if>
@@ -68,7 +68,7 @@
 
         </div>
         <div class="modal fade" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl" style="width: 90%;">
                 <div class="modal-content">
                     <table class="table">
                         <thead class="thead-dark">
@@ -78,31 +78,36 @@
                             <th scope="col">Начало аренды</th>
                             <th scope="col">Конец аренды</th>
                             <th scope="col">Общая цена</th>
+                            <th scope="col">Скидка, %</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <form action="/cp/request/${order.getId()}" method="post">
-                            <td class="align-middle"><div class="alert alert-info" role="alert">
+                            <td class="align-middle"><div id="carCost" class="alert alert-info" role="alert">
                                     ${order.getCost()}
                                 </div></td>
                             <td class="align-middle">
-                                <input type="date" id="${order.getId()}" name="dateOfBeginning">
+                                <div class="alert alert-info" role="alert"><input value="" id="beginRent" type="date"  name="dateOfBeginning"></div>
                             </td>
                             <td class="align-middle">
-                                <input type="date" class="date" name="dateOfEnding">
+                                <div class="alert alert-info" role="alert">
+                                <input id="endRent" type="date" class="date" name="dateOfEnding">
+                                </div>
                             </td>
                             <td class="align-middle">
-                                <div class="alert alert-danger" role="alert" id="${order.getId() + "cost"}">
+                                <div class="alert alert-danger" role="alert" id="totalCost" >
                                     ${order.getCost()}
                                 </div>
+                            </td>
+                            <td class="align-middle">
+                                <div id="discount" class="alert alert-info" role="alert">0</div>
                             </td>
                             <td class="align-center">
                                 <button type="submit" class="btn btn-success">Заказать</button>
                             </td>
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                             <input type="hidden" name="totalCost" id="${order.getId()}total" value="">
-
                         </form>
                         </tbody>
                     </table>

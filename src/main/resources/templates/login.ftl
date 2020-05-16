@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Вход</title>
     <!--Made with love by Mutiullah Samim -->
 
     <!--Bootsrap 4 CDN-->
@@ -20,7 +20,23 @@
 </head>
 <body>
 <div class="container">
-    <div class="d-flex justify-content-center h-100">
+    <#if RequestParameters.reg??>
+        <div class="d-flex justify-content-center mt-5">
+            <div class="alert alert-success" role="alert">
+                Регистрация прошла успешно. Войдите в систему используя свой логин и пароль.
+            </div>
+        </div>
+        <#elseif RequestParameters.error??>
+            <div class="d-flex justify-content-center mt-5">
+                <div class="alert alert-danger" role="alert">
+                    Введен неверный логин или пароль. Повторите попытку.
+                </div>
+            </div>
+
+    </#if>
+
+
+    <div class="d-flex justify-content-center mt-5">
         <div class="card">
             <div class="card-header">
                 <h3 style="color:black;">Вход</h3>

@@ -28,4 +28,5 @@ public interface RequestService {
     void rejectRequest(Request request, String message);
 
     void deleteRejected(Request request);
+    double getRentCost(double l, double cost);
 }

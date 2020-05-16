@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Регистрация</title>
     <!--Made with love by Mutiullah Samim -->
 
     <!--Bootsrap 4 CDN-->
@@ -20,16 +20,21 @@
 </head>
 <body>
 <div class="container">
-    <div class="d-flex justify-content-center h-100 ">
+    <#if message??>
+        <div class="d-flex justify-content-center mt-3">
+            <div class="alert alert-danger" role="alert">
+                Пользователь с таким именем или паролем существует!
+            </div>
+        </div>
+    </#if>
+    <div class="d-flex justify-content-center mt-3">
         <div class="card">
             <div class="card-header">
                 <h3 style="color:black;">Регистрация</h3>
 
             </div>
             <div class="card-body">
-                <#if message??>
-                    ${message}
-                </#if>
+
                 <form action="/registration" method="post">
                     <label for="username"><h5>Имя пользователя</h5></label>
                     <div class="input-group form-group">
@@ -37,10 +42,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" id="username" class="form-control ${(usernameError??)?string('is-invalid','')}" placeholder="Логин" name="username">
-                        <#if usernameError??>
+                        <input value="<#if user?has_content>${user.getUsername()}</#if>" type="text" id="username" class="form-control ${(RequestParameters.usernameError??)?string('is-invalid','')}" placeholder="Логин" name="username">
+                        <#if RequestParameters.usernameError??>
                         <div class="invalid-feedback">
-                            ${usernameError}
+                            ${RequestParameters.usernameError}
                         </div>
                         </#if>
                     </div>
@@ -49,10 +54,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input id="password" type="password" name="password" class="form-control ${(passwordError??)?string('is-invalid','')}" placeholder="Пароль">
-                        <#if passwordError??>
+                        <input value="<#if user?has_content>${user.getPassword()}</#if>" id="password" type="password" name="password" class="form-control ${(RequestParameters.passwordError??)?string('is-invalid','')}" placeholder="Пароль">
+                        <#if RequestParameters.passwordError??>
                             <div class="invalid-feedback">
-                                ${passwordError}
+                                ${RequestParameters.passwordError}
                             </div>
                         </#if>
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -62,10 +67,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-at"></i></span>
                         </div>
-                        <input id="email" type="email" class="form-control ${(emailError??)?string('is-invalid','')}" placeholder="Email" name="email">
-                        <#if emailError??>
+                        <input value="<#if user?has_content>${user.getEmail()}</#if>" id="email" type="email" class="form-control ${(RequestParameters.emailError??)?string('is-invalid','')}" placeholder="Email" name="email">
+                        <#if RequestParameters.emailError??>
                             <div class="invalid-feedback">
-                                ${emailError}
+                                ${RequestParameters.emailError}
                             </div>
                         </#if>
                     </div>
@@ -74,10 +79,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-passport"></i></span>
                         </div>
-                        <input id="password" type="text" class="form-control ${(passportNumbError??)?string('is-invalid','')}" placeholder="КН 1111111" name="passportNumb">
-                        <#if passportNumbError??>
+                        <input value="<#if user?has_content>${user.getPassportNumb()}</#if>" id="password" type="text" class="form-control ${(RequestParameters.passportNumbError??)?string('is-invalid','')}" placeholder="КН 1111111" name="passportNumb">
+                        <#if RequestParameters.passportNumbError??>
                             <div class="invalid-feedback">
-                                ${passportNumbError}
+                                ${RequestParameters.passportNumbError}
                             </div>
                         </#if>
                     </div>

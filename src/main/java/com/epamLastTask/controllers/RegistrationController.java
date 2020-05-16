@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -29,20 +31,24 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String register(@Valid User user, BindingResult bindingResult, Model model){
+    public RedirectView register(@Valid User user , BindingResult bindingResult,RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()){
             Map<String, String> errorMap = ControllerUtil.getErrorMessage(bindingResult);
-            model.mergeAttributes(errorMap);
-            return "registration";
+            redirectAttributes.mergeAttributes(errorMap);
+            redirectAttributes.addFlashAttribute("user", user);
+            return new RedirectView("registration");
         }
         else {
             if(userService.saveUser(user)){
-                return "redirect:login";
+                redirectAttributes.addAttribute("reg", "succes");
+
+                return new RedirectView("login");
             }
             else{
-                model.addAttribute("message","Пользователь с таким именем или email уже существует!");
-                return "registration";
+                redirectAttributes.addFlashAttribute("message","Пользователь с таким именем или email уже существует!");
+
+                return new RedirectView("registration");
             }
         }
 

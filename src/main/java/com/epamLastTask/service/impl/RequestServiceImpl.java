@@ -50,8 +50,8 @@ public class RequestServiceImpl implements RequestService {
         request.setMessage(null);
         request.setRepairCost(null);
         request.setRequestStatus(RequestStatus.AWAITING_PROCESSING);
+        request.setRentCost(getRentCost((double)ChronoUnit.DAYS.between(dayOfCreating.toInstant(),dayOfEnding.toInstant()),order.getCost()));
 
-        request.setRentCost((int)(ChronoUnit.DAYS.between(dayOfCreating.toInstant(),dayOfEnding.toInstant())* order.getCost()));
         requestRepo.save(request);
     }
 
@@ -154,6 +154,19 @@ public class RequestServiceImpl implements RequestService {
     public void deleteRejected(Request request) {
         request.setRequestStatus(RequestStatus.REJECTED_HISTORY);
         requestRepo.save(request);
+    }
+
+    @Override
+    public double getRentCost(double l, double cost) {
+        if(l < 7)
+            return l * cost;
+        else if(l < 14)
+            return (l*cost)*0.98;
+        else if(l < 21)
+            return (l*cost)*0.95;
+        else
+            return (l*cost) * 0.9;
+
     }
 
 
