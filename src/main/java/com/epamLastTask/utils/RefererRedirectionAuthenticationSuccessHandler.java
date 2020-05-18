@@ -8,8 +8,7 @@ public class RefererRedirectionAuthenticationSuccessHandler
         implements AuthenticationSuccessHandler {
 
     public RefererRedirectionAuthenticationSuccessHandler() {
-        super();
-        setUseReferer(true);
+        super("/hello");
     }
 
 }

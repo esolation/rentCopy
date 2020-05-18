@@ -28,11 +28,19 @@
         </#if>
     </#list>
 
+            <#else >
+                <div class="alert alert-primary mt-5" role="alert">
+                    В данный момент свободных для аренды машин нет.
+                </div>
         </#if>
 
 
     </div>
-    <div class="d-flex justify-content-center"><@p.pager url page /></div>
+    <#if page.content?has_content><div class="d-flex justify-content-center"><@p.pager url page /></div>
+    <#else>
+        <div></div>
+    </#if>
+
 </div>
 </body>
 </html>

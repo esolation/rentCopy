@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,28 +31,30 @@ public class OrderController {
 private OrderService orderService;
 @Autowired
 private RequestService requestService;
-
+@Autowired
+private UserService userService;
     @GetMapping("{order}")
     public String order(@PathVariable Order order,@AuthenticationPrincipal User user,
                         Model model){
         if(user !=null) {
             model.addAttribute("userHaveOrder", orderService.currentUserHaveThisOrder(user, order));
-
+            model.addAttribute("isAdmin", userService.isAdmin(user));
         }
         model.addAttribute("order", order);
+
         return "order";
     }
 
     @PostMapping("{order}")
     public String addOrderToCard(@PathVariable Order order,
                            @AuthenticationPrincipal User user,
+                           HttpServletRequest request,
                            Model model){
-       orderService.addOrderToCard(order,user);
-        model.addAttribute("userHaveOrder",orderService.currentUserHaveThisOrder(user,order));
-        model.addAttribute("order",order);
-        model.addAttribute("model",true);
-
-        return "order";
+        if(user!=null) {
+            orderService.addOrderToCard(order, user);
+            model.addAttribute("userHaveOrder", orderService.currentUserHaveThisOrder(user, order));
+        }
+        return "redirect:" + request.getRequestURI();
     }
 
     @GetMapping("/myOrders")
