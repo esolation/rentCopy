@@ -33,13 +33,16 @@ public class MainPageController {
     @GetMapping("/hello")
     public String main_page(@AuthenticationPrincipal User user,
                             Model model, @PageableDefault(sort = {"id"},direction = Sort.Direction.DESC, value = 6) Pageable pageable){
-        User usr = userService.findUserById(user.getId());
-        List<Order> userOrders = orderRepo.findAllOrderByUser(usr);
-        List<Order> ord =  orderRepo.findAllByAvaliable(true);
-        model.addAttribute("page", orderRepo.findAllByAvaliable(true,pageable));
-        model.addAttribute("url","/hello");
-        model.addAttribute("isAdmin", userService.isAdmin(user));
-        model.addAttribute("userOrders", userOrders);
+        if(user!=null) {
+            User usr = userService.findUserById(user.getId());
+            List<Order> userOrders = orderRepo.findAllOrderByUser(usr);
+            List<Order> ord = orderRepo.findAllByAvaliable(true);
+
+            model.addAttribute("isAdmin", userService.isAdmin(user));
+            model.addAttribute("userOrders", userOrders);
+        }
+        model.addAttribute("page", orderRepo.findAllByAvaliable(true, pageable));
+        model.addAttribute("url", "/hello");
         return "hello";
     }
     @GetMapping("/history")

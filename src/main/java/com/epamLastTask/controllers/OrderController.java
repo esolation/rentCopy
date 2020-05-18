@@ -34,8 +34,11 @@ private RequestService requestService;
     @GetMapping("{order}")
     public String order(@PathVariable Order order,@AuthenticationPrincipal User user,
                         Model model){
-        model.addAttribute("userHaveOrder",orderService.currentUserHaveThisOrder(user,order));
-        model.addAttribute("order",order);
+        if(user !=null) {
+            model.addAttribute("userHaveOrder", orderService.currentUserHaveThisOrder(user, order));
+
+        }
+        model.addAttribute("order", order);
         return "order";
     }
 

@@ -1,5 +1,6 @@
 package com.epamLastTask.config.beanInitializator;
 
+import com.epamLastTask.utils.RefererRedirectionAuthenticationSuccessHandler;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.annotation.Bean;
@@ -19,5 +20,10 @@ public class BeanInitializator {
     public Logger getLogger(){
         PropertyConfigurator.configure("E:\\java projects\\rent\\rentCopy\\src\\main\\resources\\log4j.properties");
         return Logger.getLogger(BeanInitializator.class);
+    }
+
+    @Bean
+    public RefererRedirectionAuthenticationSuccessHandler getRefererRedirect(){
+        return new RefererRedirectionAuthenticationSuccessHandler();
     }
 }

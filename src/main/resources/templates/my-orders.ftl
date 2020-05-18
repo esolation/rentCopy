@@ -16,7 +16,7 @@
                         <th scope="col">Автомобиль</th>
                         <th scope="col">Начало аренды</th>
                         <th scope="col">Конец аренды</th>
-                        <th scope="col">Статус аренды</th>
+                        <th scope="col">Статус</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                             <td>${request.getDateOfCreating().getTime()?date}</td>
                             <td>${request.getRentalDate().getTime()?date}</td>
                             <td><#if request.getRequestStatus()=="OPEN">
-                                    <span class="badge badge-primary">Активен</span>
+                                    <span class="badge badge-primary">Одобрен</span>
                                 <#elseif request.getRequestStatus()=="AWAITING_PROCESSING">
                                     <button  type="button" class="btn  btn-warning processing" data-toggle="popover" title="Обработка заказа" data-content="Вы успешно отплатили заказ. После рассмотрения вашей заявки администратором вы сможете забрать автомобиль">Обрабатывается</button>
                                 <#elseif request.getRequestStatus()=="REJECTED">

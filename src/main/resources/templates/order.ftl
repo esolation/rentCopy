@@ -43,24 +43,29 @@
                         </div>
 
                     <#else>
+                        <#if Session["SPRING_SECURITY_CONTEXT"]??>
                         <form action="/order/${order.getId()}" method="post">
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                             <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
 
                         </form>
                         <h2><button  type="button" class="btn btn-primary oneClickButton" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
-
+                        <#else >
+                            <p class="mt-5">Для заказа Вам необходимо <a href="/login"><button class="btn btn-primary">Войти</button></a> в систему.</p>
+                        </#if>
 
                     </#if>
 
                 <#else>
+                    <#if Session["SPRING_SECURITY_CONTEXT"]??>
                     <form action="/order/${order.getId()}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                         <h2><button class="btn btn-primary" >Добавить в корзину</button></h2>
                     </form>
                     <h2><button  type="button" class="btn btn-primary oneClickButton" data-toggle="modal" data-target="#bd-example-modal-lg">Заказать в 1 клик</button></h2>
-
-
+                    <#else >
+                        <p class="mt-5">Для заказа Вам необходимо <a href="/login"><button class="btn btn-primary">Войти</button></a> в систему.</p>
+                    </#if>
                 </#if>
 
 

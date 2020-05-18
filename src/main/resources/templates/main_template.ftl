@@ -14,39 +14,47 @@
         <title>Document</title>
     </head>
     <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/hello">Аренда авто</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/hello">Главная<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/history">История заказов</a>
-            </li>
 
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
-                </form>
-            </li>
-        </ul>
-        <#if isAdmin??>
-        <#if isAdmin == true>
-            <a href="/admin/active" class="btn btn-primary mr-3">Админ панель</a>
-            <a href="/cp" class="btn btn-success">Корзина <i class="fas fa-cart-arrow-down"></i></a>
-            <#else>
-                <a href="/order/myOrders" class="btn btn-info mr-2">Мои заказы <i class="fas fa-car"></i></a>
-                <a href="/cp" class="btn btn-danger">Корзина <i class="fas fa-cart-arrow-down"></i></a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/hello">Аренда авто</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        </#if>
-        </#if>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/hello">Главная<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <#if Session["SPRING_SECURITY_CONTEXT"]??><a class="nav-link" href="/history">История заказов</a>
+                    </li>
 
-    </div>
-</nav>
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button></#if>
+                        </form>
+                    </li>
+                </ul>
+                <#if Session["SPRING_SECURITY_CONTEXT"]??>
+                <#if isAdmin??>
+                    <#if isAdmin == true>
+                        <a href="/admin/active" class="btn btn-primary mr-3">Админ панель</a>
+                        <a href="/cp" class="btn btn-success">Корзина <i class="fas fa-cart-arrow-down"></i></a>
+                    <#else>
+                        <a href="/order/myOrders" class="btn btn-info mr-2">Мои заказы <i class="fas fa-car"></i></a>
+                        <a href="/cp" class="btn btn-danger">Корзина <i class="fas fa-cart-arrow-down"></i></a>
+
+                    </#if>
+                </#if>
+                    <#else >
+                        <a href="/login" class="btn btn-primary mr-3">Войти</a>
+                </#if>
+
+            </div>
+        </nav>
+
+
 </#macro>
