@@ -49,7 +49,7 @@
                         <td>${request.getDateOfCreating().getTime()?date}</td>
                         <td>${request.getRentalDate().getTime()?date}</td>
                         <td class="last"><a href="processing/active/${request.getId()}"><button class="btn btn-success"><i class="fas fa-check"></i></button></a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
                                 <i class="fas fa-times"></i>
                             </button>
                         </td>

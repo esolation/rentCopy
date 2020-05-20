@@ -18,7 +18,7 @@ $(document).ready(function() {
               var days = millisBetween / (1000 * 3600 * 24);
               var result = Math.round(Math.abs(days));
               var discount = 0;
-              if(result < 7 ){
+              if(result <= 7 ){
                      discount = 0;
                      $('#totalCost').text(result * $('#carCost').text());
                      $('#discount').text(discount.toString());

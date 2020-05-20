@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 </@t.header>
-<div class="container mt-3" xmlns="http://www.w3.org/1999/html">
+<div class="p-2 mt-3" xmlns="http://www.w3.org/1999/html">
 <div class="row overflow-auto">
     <#if processed??>
         <button type="button" id="processedModalButton" style="visibility: hidden"  class="btn btn-primary" data-toggle="modal" data-target="#processedModal">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </#if>
-    <div class="col-md-12">
+    <div class="col-xl-12">
     <#if user.getOrder()[0]?has_content && user.getOrder()[0].isAvaliable()>
     <table class="table">
         <thead class="thead-dark">
@@ -38,9 +38,12 @@
             <th scope="col">Автомобиль</th>
             <th scope="col"></th>
             <th scope="col">Цена в сутки</th>
-            <th scope="col">Дней аренды</th>
-            <th scope="col">Общая цена</th>
+            <th scope="col">Начало аренды</th>
+            <th scope="col">Конец аренды</th>
+            <th scope="col">Общая сумма/скидка</th>
             <th scope="col"></th>
+
+
 
         </tr>
 
@@ -54,47 +57,64 @@
            <td  colspan="2" > <img class="mt-3 ml-1" style="width: 100px;" src="/img/${order.getPhotos()[0]}" alt=""> <a href="/order/${order.getId()}"> <span class="ml-5">${order.getCarModel()}</span></a></td>
             <td  class="align-middle"> <span  class="alert alert-primary" role="alert">${order.getCost()}</span> </td>
             <form action="/cp/request/${order.getId()}" method="post">
-            <td class="align-middle"><div class="form-group">
-                <select name="orderDays" class="form-control" id="${order.getId()?js_string}">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>
-
-                </div></td>
+            <td class="align-middle">
+                <div class="alert alert-info" role="alert"><input value="" id="${order.getId()?js_string}beginRent" type="date"  name="dateOfBeginning"></div>
+               </td>
 
 
                 <td class="align-middle">
-                    <div  class="">
-                        <span class="alert alert-danger" id="${order.getId() + "cost"}" role="alert">${order.getCost()}</span>
-                    </div>
+                    <div class="alert alert-info" role="alert"><input value="" id="${order.getId()?js_string}endRent" type="date"  name="dateOfEnding"></div>
                 </td>
                 <td class="align-middle">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <#assign totalSum = 50>
+
                     <script>
+                        $(document).ready(function () {
+                            var today = new Date();
+                            var tomorrow = new Date();
+                            tomorrow.setDate(tomorrow.getDate()+1);
+                            $('#${order.getId()}beginRent').val(today.toISOString().substr(0, 10));
+                            $('#${order.getId()}endRent').val(tomorrow.toISOString().substr(0, 10));
 
-                        <#--console.log(selectItem);-->
-                        $("#${order.getId()}").change(function () {
+                            $('#${order.getId()}endRent').change(function () {
+                                var startDay = new Date($('#${order.getId()}beginRent').val());
+                                var endDay = new Date($('#${order.getId()}endRent').val());
+                                var millisBetween = startDay.getTime() - endDay.getTime();
+                                var days = millisBetween / (1000 * 3600 * 24);
+                                var result = Math.round(Math.abs(days));
+                                var discount = 0;
+                                if(result <= 7 ){
+                                    discount = 0;
+                                    $('#${order.getId()}totalCost').text(result * ${order.getCost()});
+                                    //$('#discount').text(discount.toString());
+                                }
+                                else if(result <= 14 ){
+                                    discount = 2;
+                                    $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.98);
+                                    $('#${order.getId()}discount').text(discount.toString());
+                                }
+                                else if(result <= 21 ){
+                                    discount = 5;
+                                    $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.95);
+                                    $('#${order.getId()}discount').text(discount.toString());
+                                }
+                                else {
+                                    discount = 10;
+                                    $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.9);
+                                    $('#${order.getId()}discount').text(discount.toString());
+                                }
+                            })
 
-                            var factor = $("#${order.getId()} option:selected").text();
-                            var carCost = "${order.getCost()}".replace(/\s/g, '');
-                            var total = factor * carCost ;
-                            console.log("${order.getCost()}".replace(/\s/g, ''));
-                            $("#${order.getId()}cost").text(total);
-                            $("#${order.getId()}total").attr("value",total);
 
                         })
-                    </script>
-                    <input type="hidden" name="totalCost" id="${order.getId()}total" value="">
 
+
+                    </script>
+                    <span class="alert alert-info" role="alert" id="${order.getId()?js_string}totalCost">${order.getCost()}</span>
+                    <span>/</span>
+                    <span id="${order.getId()?js_string}discount" class="alert alert-warning" role="alert">0</span>
+                </td>
+                <td>
                 <button type="submit" class="btn btn-success">Заказать</button>
         </form>
 

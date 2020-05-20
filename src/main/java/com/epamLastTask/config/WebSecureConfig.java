@@ -2,6 +2,7 @@ package com.epamLastTask.config;
 
 import com.epamLastTask.service.impl.UserServiceImpl;
 import com.epamLastTask.utils.RefererRedirectionAuthenticationSuccessHandler;
+import com.epamLastTask.utils.RequestURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,8 +23,9 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
     private UserServiceImpl userServiceImpl;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Autowired
-    RefererRedirectionAuthenticationSuccessHandler handler;
+    private RefererRedirectionAuthenticationSuccessHandler handler;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
