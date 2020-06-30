@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Calendar;
 import java.util.Date;
 
 @Controller
@@ -29,6 +28,7 @@ public class RequestController {
     @Autowired
     private Logger logger;
 
+
     @PostMapping("{order}")
     public String createRequest(@AuthenticationPrincipal User user,
                                 @PathVariable Order order,
@@ -36,18 +36,25 @@ public class RequestController {
                                 @RequestParam(name="dateOfEnding") @DateTimeFormat(pattern = "yyyy-MM-dd")Date dayOfEnding,
                                 Model model){
         requestService.createRequest(user,order,dayOfCreating,dayOfEnding);
-        logger.info(user.getUsername() + " successful order " + order.getCarModel());
+
         return "redirect:/order/myOrders";
     }
 
     @PostMapping("complete/{request}")
-    public String completeRequest(@PathVariable Request request){
-            requestService.completeRequest(request);
+    public String completeRequest(@PathVariable Request request, @AuthenticationPrincipal User user){
+            requestService.completeRequest(request, user);
         return "redirect:/cp";
     }
     @PostMapping("deleteRejected/{request}")
     public String deleteRejectedRequest(@PathVariable Request request){
         requestService.deleteRejected(request);
+        return "redirect:/order/myOrders";
+    }
+
+    @PostMapping("pay/{request}")
+    public String payForRequest(@PathVariable Request request, @AuthenticationPrincipal User user){
+
+        requestService.payForRequest(request,user);
         return "redirect:/order/myOrders";
     }
 }

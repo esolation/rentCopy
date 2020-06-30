@@ -2,16 +2,11 @@ package com.epamLastTask.controllers;
 
 import com.epamLastTask.entities.Order;
 import com.epamLastTask.entities.User;
-import com.epamLastTask.repositories.OrderRepo;
-import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.OrderService;
 import com.epamLastTask.service.RequestService;
 import com.epamLastTask.service.UserService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/order")

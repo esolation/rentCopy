@@ -23,7 +23,14 @@
     <#if message??>
         <div class="d-flex justify-content-center mt-3">
             <div class="alert alert-danger" role="alert">
-                Пользователь с таким именем или паролем существует!
+                ${message}
+            </div>
+        </div>
+    </#if>
+    <#if passCheckError??>
+        <div class="d-flex justify-content-center mt-3">
+            <div class="alert alert-danger" role="alert">
+                ${passCheckError}
             </div>
         </div>
     </#if>

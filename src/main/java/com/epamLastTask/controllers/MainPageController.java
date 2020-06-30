@@ -1,7 +1,6 @@
 package com.epamLastTask.controllers;
 
 import com.epamLastTask.entities.Order;
-import com.epamLastTask.entities.Request;
 import com.epamLastTask.entities.User;
 import com.epamLastTask.entities.enums.RequestStatus;
 import com.epamLastTask.repositories.OrderRepo;
@@ -37,8 +36,12 @@ public class MainPageController {
             User usr = userService.findUserById(user.getId());
             List<Order> userOrders = orderRepo.findAllOrderByUser(usr);
             List<Order> ord = orderRepo.findAllByAvaliable(true);
-
-            model.addAttribute("isAdmin", userService.isAdmin(user));
+            if(userService.isAdmin(user)) {
+                model.addAttribute("isAdmin", userService.isAdmin(user));
+                model.addAttribute("notification", requestService.findAllByRequestStatus(RequestStatus.AWAITING_PROCESSING).size());
+            }
+            else
+                model.addAttribute("isAdmin", userService.isAdmin(user));
             model.addAttribute("userOrders", userOrders);
         }
         model.addAttribute("page", orderRepo.findAllByAvaliable(true, pageable));

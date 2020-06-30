@@ -91,17 +91,17 @@
                                 else if(result <= 14 ){
                                     discount = 2;
                                     $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.98);
-                                    $('#${order.getId()}discount').text(discount.toString());
+                                    $('#${order.getId()}discount').text(discount.toString() + '%');
                                 }
                                 else if(result <= 21 ){
                                     discount = 5;
                                     $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.95);
-                                    $('#${order.getId()}discount').text(discount.toString());
+                                    $('#${order.getId()}discount').text(discount.toString() + '%');
                                 }
                                 else {
                                     discount = 10;
                                     $('#${order.getId()}totalCost').text(result * ${order.getCost()} * 0.9);
-                                    $('#${order.getId()}discount').text(discount.toString());
+                                    $('#${order.getId()}discount').text(discount.toString() + '%');
                                 }
                             })
 
@@ -112,7 +112,7 @@
                     </script>
                     <span class="alert alert-info" role="alert" id="${order.getId()?js_string}totalCost">${order.getCost()}</span>
                     <span>/</span>
-                    <span id="${order.getId()?js_string}discount" class="alert alert-warning" role="alert">0</span>
+                    <span id="${order.getId()?js_string}discount" class="alert alert-warning" role="alert">0%</span>
                 </td>
                 <td>
                 <button type="submit" class="btn btn-success">Заказать</button>

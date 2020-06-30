@@ -1,11 +1,9 @@
 package com.epamLastTask.entities;
 
 import com.epamLastTask.entities.enums.Role;
-import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,6 +12,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
+@Table(name = "usr")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +28,7 @@ public class User implements UserDetails {
     private String password;
     @NotBlank(message = "Пожалуйста введите Ваш номер пасспорта")
     private String passportNumb;
+    
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))

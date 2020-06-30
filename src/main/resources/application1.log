@@ -1,0 +1,8 @@
+2020-06-11 19:25:56 INFO  USER user(2) ordered Rolls Royce Phantom(12). Request №18
+2020-06-11 19:26:24 INFO  ADMIN root(1) was active request №18
+2020-06-11 20:14:43 INFO  USER user(2) ordered Mercedes Benz(11). Request №20
+2020-06-11 20:15:23 INFO  ADMIN root(1) was active request №20
+2020-06-11 20:15:33 INFO  USER root(1) ordered Skoda(13). Request №21
+2020-06-11 20:15:45 INFO  ADMIN root(1) was rejected request №21. Reason: Машина повреждена
+2020-06-11 20:29:46 INFO  ADMIN root(1) was rejected car reception. Request №18 Car: Rolls Royce Phantom(12). Reason: Разбита фара. Cost: 50
+2020-06-11 20:30:11 INFO  USER user(2) was paid the invoice for the Request №18

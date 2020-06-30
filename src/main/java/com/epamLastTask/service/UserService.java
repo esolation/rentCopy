@@ -4,7 +4,8 @@ import com.epamLastTask.entities.User;
 
 public interface UserService {
 
-  boolean saveUser(User user);
+  int saveUser(User user);
+  boolean checkPassport(String passNumb);
   boolean isAdmin(User user);
   User findUserById(Long id);
   User getAuthenticationUser();

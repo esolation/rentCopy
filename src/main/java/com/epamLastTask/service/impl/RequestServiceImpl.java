@@ -7,6 +7,7 @@ import com.epamLastTask.entities.enums.RequestStatus;
 import com.epamLastTask.repositories.RequestRepo;
 import com.epamLastTask.repositories.UserRepo;
 import com.epamLastTask.service.RequestService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,8 @@ public class RequestServiceImpl implements RequestService {
     private RequestRepo requestRepo;
     @Autowired
     private UserRepo userRepo;
-
+    @Autowired
+    private Logger logger;
 
     @Transactional
     @Override
@@ -53,6 +55,8 @@ public class RequestServiceImpl implements RequestService {
         request.setRentCost(getRentCost((double)ChronoUnit.DAYS.between(dayOfCreating.toInstant(),dayOfEnding.toInstant()),order.getCost()));
 
         requestRepo.save(request);
+
+        logger.info("USER " + user.getUsername()+"(" + user.getId() + ")" + " ordered " + order.getCarModel() + "(" + order.getId() + "). Request №" + request.getId());
     }
 
     @Override
@@ -61,26 +65,29 @@ public class RequestServiceImpl implements RequestService {
     }
     @Transactional
     @Override
-    public void applyRequest(Request request, String message, String money) {
+    public void applyRequest(Request request, String message, String money, User user) {
         if((message==null || money ==null)|| (message.equals("") || money.equals(""))){
             request.setRequestStatus(RequestStatus.COMPLETE);
             request.getOrder().setAvaliable(true);
             request.getOrder().getUser().clear();
+            logger.info("ADMIN " + user.getUsername() + "(" + user.getId() + ") was complete request №" + request.getId());
         }
         else {
             request.setRequestStatus(RequestStatus.AWAITING_PAYMENT);
             request.setMessage(message);
             request.setRepairCost(Double.parseDouble(money));
+            logger.info("ADMIN " + user.getUsername() + "(" + user.getId() + ") was rejected car reception." +" Request №" + request.getId() + " Car: " + request.getOrder().getCarModel() + "(" + request.getOrder().getId() +")." + " Reason: " + message + ". Cost: " + money);
         }
         requestRepo.save(request);
     }
 
     @Override
-    public void completeRequest(Request request) {
+    public void completeRequest(Request request, User user) {
         request.setRequestStatus(RequestStatus.COMPLETE);
         request.getOrder().setAvaliable(true);
         request.getOrder().setUser(null);
         requestRepo.save(request);
+        logger.info("ADMIN " + user.getUsername() + "(" + user.getId() + ") was complete car rent. Request №" + request.getId() +  ". Car: " + request.getOrder().getCarModel() + "(" + request.getOrder().getId() + ")." );
     }
 
     @Override
@@ -114,16 +121,16 @@ public class RequestServiceImpl implements RequestService {
         List<Request> allRequests = findAllByUserId(id);
         return allRequests.stream().filter(r-> r.getRequestStatus()==RequestStatus.AWAITING_PAYMENT).collect(Collectors.toList());
     }
-
+    @Transactional(readOnly = true)
     @Override
-    public List<Request> findCompleteRequestByUserId(Long id) {
+    public  List<Request> findCompleteRequestByUserId(Long id) {
         List<Request> total = new ArrayList<>();
        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.COMPLETE,id));
        total.addAll(requestRepo.findAllByRequestStatusAndUserID(RequestStatus.REJECTED_HISTORY,id));
        return total;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Request> findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(Long id) {
         List<Request> total = new ArrayList<>();
@@ -135,19 +142,21 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void activeRequest(Request request) {
+    public void activeRequest(Request request, User user) {
         request.setRequestStatus(RequestStatus.OPEN);
         requestRepo.save(request);
+        logger.info("ADMIN " + user.getUsername() + "(" + user.getId() + ") was active request №" + request.getId());
     }
 
     @Transactional
     @Override
-    public void rejectRequest(Request request, String message) {
+    public void rejectRequest(Request request, String message, User user) {
         request.setRequestStatus(RequestStatus.REJECTED);
         request.getOrder().setAvaliable(true);
         request.getOrder().setUser(null);
         request.setMessage(message);
         requestRepo.save(request);
+        logger.info("ADMIN " + user.getUsername() + "(" + user.getId()+") was rejected request №" + request.getId() + ". Reason: " + message);
     }
 
     @Override
@@ -169,5 +178,12 @@ public class RequestServiceImpl implements RequestService {
 
     }
 
-
+    @Override
+    public void payForRequest(Request request, User user) {
+        logger.info("USER " + user.getUsername() + "(" + user.getId() + ") was paid the invoice for the Request №" + request.getId());
+        request.setRequestStatus(RequestStatus.COMPLETE);
+        request.getOrder().setAvaliable(true);
+        request.getOrder().setUser(null);
+        requestRepo.save(request);
+    }
 }

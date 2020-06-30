@@ -18,7 +18,7 @@ public class CreateOrderController {
     @Autowired
     private OrderService orderService;
 
-    private String uploadPath;
+
     @PostMapping("/createOrder")
     public String addOrder(
             @RequestParam("file") MultipartFile[] file,

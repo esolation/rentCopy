@@ -6,7 +6,15 @@
             <a href="/createOrder"><div class="btn btn-success">Добавить авто</div></a>
             <ul class="nav nav-pills nav-stacked mt-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/processing">Заказы для рассмотрения</a>
+                    <a class="nav-link" href="/admin/processing">Заказы для рассмотрения
+
+                        <#if notification == 0>
+
+                        <#else >
+                            <span class="badge badge-danger">
+                                ${notification}
+                        </span></#if></a>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/active">Активные заказы</a>
@@ -41,7 +49,7 @@
 
                         <th scope="row">${request.getId()}</th>
                         <td><a href="/order/${request.getOrder().getId()}"> ${request.getOrder().getCarModel()}</a></td>
-                        <td>${request.getOrder().getUser()[0].getUsername()}</td>
+                        <td><a href="/admin/users/${request.getUserID()}">${request.getOrder().getUser()[0].getUsername()}</a></td>
                         <td>${request.getDateOfCreating().getTime()?date}</td>
                         <td>${request.getRentalDate().getTime()?date}</td>
 

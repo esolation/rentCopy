@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Добавить авто</title>
 </head>
 <body>
 <div class="container">
@@ -16,25 +16,25 @@
 <form action="/createOrder" enctype="multipart/form-data" method="post">
     <div class="form-group">
     <label for="carModel">Название автомобиля</label>
-    <input type="text" class="form-control" id="carModel" name="carModel" placeholder="Лада Седан">
+    <input type="text" class="form-control" id="carModel" name="carModel" placeholder="Лада Седан" required>
     </div>
     <div class="form-group">
-        <input type="text" name="year" placeholder="Год производства">
-        <input type="text" name="capacity" placeholder="Объем">
-        <input type="text" name="consumption" placeholder="Расход топлива">
+        <input type="text" name="year" placeholder="Год производства" required>
+        <input type="text" name="capacity" placeholder="Объем" required>
+        <input type="text" name="consumption" placeholder="Расход топлива" required>
     </div>
     <div class="form-group">
         <label for="fullDescription">Полное описание автомобиля</label>
-        <textarea class="form-control" name="description" id="fullDescription"  rows="5"></textarea>
+        <textarea class="form-control" name="description" id="fullDescription"  rows="5" required></textarea>
     </div>
     <div class="form-group">
         <label for="cost">Цена аренды</label>
-        <input type="text" name="cost" id="cost" placeholder="00.0">
+        <input type="text" name="cost" id="cost" placeholder="00.0" required>
     </div>
     <div id="copyFile">
     <div class="form-group">
                 <label for="fileName">Выберите файл</label>
-                <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" required>
     </div>
 
     </div>

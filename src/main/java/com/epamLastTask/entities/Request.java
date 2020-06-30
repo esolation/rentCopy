@@ -4,7 +4,6 @@ import com.epamLastTask.entities.enums.RequestStatus;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Date;
 
 @Entity
 public class Request {

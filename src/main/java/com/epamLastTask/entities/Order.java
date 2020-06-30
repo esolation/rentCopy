@@ -35,11 +35,7 @@ public class Order {
     @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
     private List<Request> request;
 
-//    @PrePersist
-//    public void addUser()
-//    {
-//        user.forEach(u -> u.getOrder().add(this));
-//    }
+
     @PreRemove
     public void removeUser(){
         user.forEach(u -> u.getOrder().remove(this));

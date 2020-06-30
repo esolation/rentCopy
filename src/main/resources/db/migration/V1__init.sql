@@ -1,0 +1,15 @@
+ create table hibernate_sequence (next_val bigint);
+insert into hibernate_sequence values ( 2 );
+ insert into hibernate_sequence values (2 );
+ insert into hibernate_sequence values ( 2 );
+ create table ord (id bigint not null, avaliable bit not null, capacity double precision, car_model varchar(255), consumption double precision, cost double precision, description varchar(255), year integer, primary key (id)) ;
+ create table order_photo (order_id bigint not null, photos varchar(255));
+ create table request (id bigint not null, date_of_creating date, message varchar(255), rent_cost double precision not null, rental_date date, repair_cost double precision, request_status varchar(255), userid bigint, user_name varchar(255), order_id bigint, primary key (id)) ;
+ create table user_role (user_id bigint not null, role varchar(255));
+ create table users_order (order_id bigint not null, user_id bigint not null, primary key (order_id, user_id));
+ create table usr (id bigint not null, email varchar(255), passport_numb varchar(255), password varchar(128), username varchar(128), primary key (id));
+ alter table order_photo add constraint FKkr636kmb54v9o2a76wr9etcsk foreign key (order_id) references ord (id);
+ alter table request add constraint FKoc96kkrdr5nja053uwxpkrgm0 foreign key (order_id) references ord (id);
+ alter table user_role add constraint FKfpm8swft53ulq2hl11yplpr5 foreign key (user_id) references usr (id);
+ alter table users_order add constraint FK1cfwi5cobp7g6or5q34orlnhs foreign key (user_id) references usr (id);
+ alter table users_order add constraint FKb1atwjv4pfchxk3tppb886p2c foreign key (order_id) references ord (id);

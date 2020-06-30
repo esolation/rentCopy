@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7e83a299-d52c-4892-bad2-99dc17177ba4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/config/WebSecureConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/config/WebSecureConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/AddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/AddController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/CpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/CpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/domains/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/domains/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/entities/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/domains/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/repositories/OrderRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/repositories/OrderRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/repositories/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/repositories/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epamLastTask/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epamLastTask/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cp.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cp.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hello.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main_template.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main_template.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/21af8d17-9ac9-4694-b7e1-272234e82701.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/38567bd2-9187-4423-9fd5-f4d597957f01.porsche-model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/4b6117ed-e537-413c-a87f-ea96160cff91.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/5129d813-48b7-4f58-88ee-9da213b0337e.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/9ed36cef-1bfb-4926-9a67-ec22c50ada57.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/b7d2e335-2276-4744-b3f6-253e9884df71.renault_laguna_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/c2f3bc9e-deac-477c-bf45-f6ad6a4571f7.YW0DIgHPsvw.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/d3f3c622-cff1-4fde-99e2-fd7bf175fbaa.porsche--panamera-turbo-s--82a2864f3d1ae5c55e5e6aef3c2c1be8--640x480.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/dcdd422d-71ca-476e-b0bf-2acc71ad4a6f.porsche--panamera-turbo-s--82a2864f3d1ae5c55e5e6aef3c2c1be8--640x480.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/e8f8a3c3-17bc-45bf-bdf2-0b96b0bc2f37.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/ea461bbd-c828-4dee-b949-4a3666c36235.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/fd5d1533-8b42-42c5-93ca-69c6323080cc.porsche-model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/epamLastTask/controllers/CpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/epamLastTask/controllers/CpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/epamLastTask/domains/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/epamLastTask/domains/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/epamLastTask/domains/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/epamLastTask/domains/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/epamLastTask/repositories/OrderRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/epamLastTask/repositories/OrderRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/epamLastTask/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/epamLastTask/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/cp.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/cp.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/hello.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hello.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/main_template.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/main_template.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/21af8d17-9ac9-4694-b7e1-272234e82701.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/38567bd2-9187-4423-9fd5-f4d597957f01.porsche-model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/4b6117ed-e537-413c-a87f-ea96160cff91.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/5129d813-48b7-4f58-88ee-9da213b0337e.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/9ed36cef-1bfb-4926-9a67-ec22c50ada57.1560838551_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/b7d2e335-2276-4744-b3f6-253e9884df71.renault_laguna_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/c2f3bc9e-deac-477c-bf45-f6ad6a4571f7.YW0DIgHPsvw.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/d3f3c622-cff1-4fde-99e2-fd7bf175fbaa.porsche--panamera-turbo-s--82a2864f3d1ae5c55e5e6aef3c2c1be8--640x480.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/dcdd422d-71ca-476e-b0bf-2acc71ad4a6f.porsche--panamera-turbo-s--82a2864f3d1ae5c55e5e6aef3c2c1be8--640x480.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/e8f8a3c3-17bc-45bf-bdf2-0b96b0bc2f37.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/ea461bbd-c828-4dee-b949-4a3666c36235.download.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/uploads/fd5d1533-8b42-42c5-93ca-69c6323080cc.porsche-model.png" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="rent@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="rent@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="rent@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="rent: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aZO1PqwgotO1cOtWmWf5n9zKmc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\javaProjects\rentCopy\src\main\resources" />
+      <recent name="D:\javaProjects\rentCopy\src\main\java" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Starter" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="rentCopy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epamLastTask.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epamLastTask.Starter" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Starter" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@17f704f6" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7e83a299-d52c-4892-bad2-99dc17177ba4" name="Default Changelist" comment="" />
+      <created>1586939433243</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586939433243</updated>
+      <workItem from="1586939436946" duration="281000" />
+      <workItem from="1586963421793" duration="2438000" />
+      <workItem from="1586966154007" duration="11116000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="392" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586939571943">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="392" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1586939571943" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1586939719731">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586939719731" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1586939719730">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586939719730" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1586939719730">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586939719730" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1586939719731">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586939719731" />
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1586939719732">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586939719732" />
+    <state width="1323" height="179" key="GridCell.Tab.1.center" timestamp="1586939719731">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1586939719731" />
+    <state width="1323" height="179" key="GridCell.Tab.1.left" timestamp="1586939719731">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1586939719731" />
+    <state width="1323" height="179" key="GridCell.Tab.1.right" timestamp="1586939719732">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1586939719732" />
+  </component>
+</project>

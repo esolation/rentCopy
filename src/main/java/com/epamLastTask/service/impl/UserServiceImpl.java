@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
@@ -31,14 +30,22 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public boolean saveUser(User user) {
+    public int saveUser(User user) {
         if(userRepo.findByUsername(user.getUsername()) ==null && userRepo.findUserByEmail(user.getEmail())==null) {
+            if(!checkPassport(user.getPassportNumb()))
+                return 2;
             user.setRole(Collections.singleton(Role.USER));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPassportNumb(user.getPassportNumb().toUpperCase());
             userRepo.save(user);
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
+    }
+
+    @Override
+    public boolean checkPassport(String passNumb) {
+        return passNumb.matches("^[а-яА-ЯёЁa-zA-Z0-9]+$");
     }
 
     @Override

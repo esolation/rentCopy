@@ -11,7 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <title>Document</title>
+        <title>Аренда авто</title>
     </head>
     <body>
 
@@ -43,7 +43,12 @@
                 <#if Session["SPRING_SECURITY_CONTEXT"]??>
                 <#if isAdmin??>
                     <#if isAdmin == true>
-                        <a href="/admin/active" class="btn btn-primary mr-3">Админ панель</a>
+                        <a href="/admin/active" class="btn btn-primary mr-3">Админ панель
+                            <#if notification??>
+                            <#if notification != 0>
+                                <span class="badge badge-danger"> ${notification}</span>
+                            </#if></#if>
+                        </a>
                         <a href="/cp" class="btn btn-success">Корзина <i class="fas fa-cart-arrow-down"></i></a>
                     <#else>
                         <a href="/order/myOrders" class="btn btn-info mr-2">Мои заказы <i class="fas fa-car"></i></a>

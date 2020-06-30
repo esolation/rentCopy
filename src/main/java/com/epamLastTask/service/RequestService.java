@@ -12,8 +12,8 @@ import java.util.List;
 public interface RequestService {
     void createRequest(User user, Order order, Date orderBeginning, Date orderEnding);
     void removeRequest(Order order);
-    void applyRequest(Request request, String message, String money);
-    void completeRequest(Request request);
+    void applyRequest(Request request, String message, String money, User user);
+    void completeRequest(Request request, User user);
     List<Request> findAll();
     List<Request> findAllByRequestStatus(RequestStatus requestStatus);
     Request findByRequestStatusAndUserId(RequestStatus requestStatus,Long id);
@@ -23,10 +23,11 @@ public interface RequestService {
     List<Request> findCompleteRequestByUserId(Long id);
     List<Request> findAllAwaitingPaymentAndActiveAndProcessingAndRejectedByUserId(Long id);
 
-    void activeRequest(Request request);
+    void activeRequest(Request request, User user);
 
-    void rejectRequest(Request request, String message);
+    void rejectRequest(Request request, String message, User user);
 
     void deleteRejected(Request request);
     double getRentCost(double l, double cost);
+    void payForRequest(Request request, User user);
 }

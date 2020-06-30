@@ -1,5 +1,6 @@
 package com.epamLastTask.utils;
 
+
 public  class RequestURI {
      private  String uri = "/hello";
 

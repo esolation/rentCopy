@@ -7,6 +7,7 @@
 
     <div class="row mt-5">
         <div class="col-md-12">
+
             <#if requests[0]?has_content>
                 <table class="table">
                     <thead>
@@ -20,6 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     <#list requests as request>
                         <tr>
 
@@ -33,7 +35,7 @@
                                     <button  type="button" class="btn  btn-warning processing" data-toggle="popover" title="Обработка заказа" data-content="Вы успешно отплатили заказ. После рассмотрения вашей заявки администратором вы сможете забрать автомобиль">Обрабатывается</button>
                                 <#elseif request.getRequestStatus()=="REJECTED">
                                     <div>
-                                        <button style="float: left;" type="button" class="btn btn-sm btn-danger" data-toggle="popover" title="Причина отказа" data-content="${request.getMessage()}. Деньги возвращены на Ваш баланс.">Отклонено</button>
+                                        <button style="float: left;" type="button" class="btn btn-sm btn-danger" data-toggle="popover" title="Причина отказа" data-content="${request.getMessage()}">Отклонено</button>
                                         <span>
                                            <form class="form-horizontal ml-2" action="/cp/request/deleteRejected/${request.getId()}" method="post">
                                                <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -64,7 +66,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                                                        <form action="/cp/request/complete/${request.getId()}" method="post">
+                                                        <form action="/cp/request/pay/${request.getId()}" method="post">
                                                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                                                             <button type="submit" class="btn btn-primary">Оплатить</button>
                                                         </form>
@@ -80,6 +82,7 @@
                                 </#if></td>
                         </tr>
                     </#list>
+
                     </tbody>
                 </table>
             <#else>
@@ -87,6 +90,7 @@
                     Активных или ожидающих оплаты заказов нет
                 </div>
             </#if>
+
         </div>
     </div>
 
